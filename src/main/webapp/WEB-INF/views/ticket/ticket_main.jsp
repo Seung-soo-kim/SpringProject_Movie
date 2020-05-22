@@ -52,9 +52,15 @@ window.onload=function(){
        var json=eval("[" + data + "]");
        alert(data);
        
+       var movie_select =document.getElementById("movie_select")
       for(var i=0 ; i<json[0].boxOfficeResult.weeklyBoxOfficeList.length ; i++){
-    	  document.write(json[0].boxOfficeResult.weeklyBoxOfficeList[i].rank+" : ");
-    	  document.write(json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm+"<br>");
+    	  
+    	  var option = document.createElement("option");
+    	  option.innerHTML =json[0].boxOfficeResult.weeklyBoxOfficeList[i].rank+" : "+json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;//옵션 이름 
+		  
+			
+		  movie_select.appendChild(option);
+    	  
     	  
       }
        
@@ -70,7 +76,10 @@ window.onload=function(){
 </style>
 </head>
 <body>
-
+<!-- 영화목록 -->
+<select id="movie_select" onchange=""><!-- 옵션을 바꿀 때마다 movie_player메서드 실행 -->
+		<option>::영화를 선택하세요::</option>
+</select>
 	
 </body>
 </html>
