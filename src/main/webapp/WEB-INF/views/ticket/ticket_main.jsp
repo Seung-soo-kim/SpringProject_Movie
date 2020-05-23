@@ -50,14 +50,15 @@ window.onload=function(){
        
        var data = xhr.responseText;
        var json=eval("[" + data + "]");
-       alert(data);
+     
        
        var movie_select =document.getElementById("movie_select")
       for(var i=0 ; i<json[0].boxOfficeResult.weeklyBoxOfficeList.length ; i++){
     	  
     	  var option = document.createElement("option");
-    	  option.innerHTML =json[0].boxOfficeResult.weeklyBoxOfficeList[i].rank+" : "+json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;//옵션 이름 
-		  
+    	  option.innerHTML =json[0].boxOfficeResult.weeklyBoxOfficeList[i].rank+" : "
+    	  					+json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;//옵션 이름 
+    	  option.value=json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;	
 			
 		  movie_select.appendChild(option);
     	  
@@ -69,17 +70,26 @@ window.onload=function(){
     
  }
 
-
+	function theater_w() {
+		var movieNm = document.getElementById("movie_select").value;
+		
+		
+	}
 </script>
 <style type="text/css">
 
 </style>
 </head>
 <body>
+<div>
 <!-- 영화목록 -->
-<select id="movie_select" onchange=""><!-- 옵션을 바꿀 때마다 movie_player메서드 실행 -->
+<select id="movie_select" onchange="theater_w();"><!-- 옵션을 바꿀 때마다 theater_w 메서드 실행 -->
 		<option>::영화를 선택하세요::</option>
 </select>
+
+<hr>
+
 	
+</div>
 </body>
 </html>
