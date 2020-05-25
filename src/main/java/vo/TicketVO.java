@@ -2,7 +2,7 @@ package vo;
 
 public class TicketVO {
 	private int t_idx,seat_count;
-	private String m_name,id ,repRat ,seatNumber ,mt_loc,loc;
+	private String m_name,id ,repRat ,seatNumber ,district,city;
 	public int getT_idx() {
 		return t_idx;
 	}
@@ -39,18 +39,19 @@ public class TicketVO {
 	public void setSeatNumber(String seatNumber) {
 		this.seatNumber = seatNumber;
 	}
-	public String getMt_loc() {
-		return mt_loc;
+	public String getDistrict() {
+		return district;
 	}
-	public void setMt_loc(String mt_loc) {
-		this.mt_loc = mt_loc;
+	public void setDistrict(String district) {
+		this.district = district;
 	}
-	public String getLoc() {
-		return loc;
+	public String getCity() {
+		return city;
 	}
-	public void setLoc(String loc) {
-		this.loc = loc;
+	public void setCity(String city) {
+		this.city = city;
 	}
+	
 	
 	
 	
