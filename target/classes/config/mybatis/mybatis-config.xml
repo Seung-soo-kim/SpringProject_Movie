@@ -9,10 +9,10 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="vo.BoardVO" alias="board"/>
+		<typeAlias type="vo.TheaterVO" alias="theater"/>
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="config/mybatis/mapper/board.xml" />
+		<mapper resource="config/mybatis/mapper/theater.xml" />
 	</mappers>
 </configuration>

@@ -51,7 +51,7 @@ window.onload=function(){
        
        var data = xhr.responseText;
        var json=eval("[" + data + "]");
-     
+     	
        //id가 movie_select인 태그를 가져온다
        var movie_select =document.getElementById("movie_select")
        
@@ -70,6 +70,8 @@ window.onload=function(){
     }  
     
  }
+ 
+ 
 	//영화 클릭시 실행되는 메서드
 	function movie() {
 		var movieNm = document.getElementById("movie_select").value;
@@ -80,114 +82,154 @@ window.onload=function(){
 		
 		
 		//각 영화가 상영하는 지역을 DB에서 가져와 출력(나중에 DB로 추가할 예정)
-		var sido = ['서울', '인천'];
+		var url="citylist.do"
+		var param="m_name="+movieNm;
+		sendRequest( url, param, resultFn2, "GET" );
+	}
+	
+	function resultFn2() {
 		
-		//id가 city_select인 태그를가져온다
-		var city_select =document.getElementById("city_select")
-		
-		for(var i=0 ; i<sido.length;i++){
-			var option = document.createElement("option");
-			option.innerHTML=sido[i];
-			option.value=sido[i];
-			city_select.appendChild(option);
+		if( xhr.readyState == 4 && xhr.status == 200 ){
+			var data = xhr.responseText;
+			var json = eval(data);
+			var city_select =document.getElementById("city_select")
+			
+			for(var i=0 ; i<json.length; i++){
+				var option = document.createElement("option");
+				option.innerHTML=json[i].city;
+				option.value=json[i].city;
+				city_select.appendChild(option);
+			}
 		}
 	}
 	
+	
+	
 	//지역 선택시 실행되는 메서드
 	function city() {
+		var movieNm = document.getElementById("movie_select").value;
 		var city= document.getElementById("city_select").value;
+		
+		
 		document.getElementById("city").value=city;
 		document.getElementById("city").innerHTML=city;
 		
 		
 		//각 영화가 상영하는 지역의 상영관을 DB에서 가져와 출력(나중에 DB로 추가할 예정)
-		var sido = ['강남', '용산' , '마포'];
 		
-		var district_select = document.getElementById("district_select");
-		
-		for(var i=0 ; i<sido.length;i++){
-			var option = document.createElement("option");
-			option.innerHTML=sido[i];
-			option.value=sido[i];
-			district_select.appendChild(option);
-		}
-		
+		var url="districtlist.do"
+		var param="m_name="+movieNm+"&city="+city;
+		sendRequest( url, param, resultFn3, "GET" );
 	}
 	
-	//사영관 선택시 실행
+	function resultFn3() {
+		if( xhr.readyState == 4 && xhr.status == 200 ){
+			var data = xhr.responseText;
+			var json = eval(data);
+			alert(data);
+			var district_select = document.getElementById("district_select");
+			
+			for(var i=0 ; i<json.length;i++){
+				
+				var option = document.createElement("option");
+				option.innerHTML=json[i].district;
+				option.value=json[i].district;
+				district_select.appendChild(option);
+			}
+		}
+	}
+	
+	//상영관 선택시 실행
 	function district() {
 		//
+		var movieNm = document.getElementById("movie_select").value;
+		var city= document.getElementById("city_select").value;
 		var district= document.getElementById("district_select").value;
+		
+		
 		document.getElementById("district").value=district;
 		document.getElementById("district").innerHTML=district;
 		
-		//날자 출력
-		var dt = new Date();
-		//달
-		var m = dt.getMonth() + 1;
-		var month = m+'';
-		//일
-		var d = dt.getDate() 
 		
-		
-		//요일(int형)
-		
-		var day_int = dt.getDay()//0~6
-		
-		//요일(리스트)        0    1     2     3     4   5   6
-		var arrayDayStr=['일' ,'월' , '화' , '수', '목','금','토'];
-		//현재 요일 출력
-		var day=arrayDayStr[day_int];
-		//년
-		var y = dt.getFullYear();
-		var year=y+'';
-		
-		var date_select = document.getElementById("date_select");
-		
-		var sido = ['강남', '용산' , '마포'];
-		
-		
-		
-		for(var i=0 ; i<2;i++){
-			for(var j=0 ; j <6 ;j++){
-			var option = document.createElement("option");
-			var date=d+"";
-			option.innerHTML=month+'월 '+ date + '일 ' + day + '요일';
-			option.value=month+'월 '+ date + '일 ' + day + '요일';
-			date_select.appendChild(option);
-			d++;//수정해야함(달별로 끝나는 날이 다르므로)
-			if(month=='1' ||month=='3' ||month=='5'||month=='7'||month=='8'||month=='10'||month=='12'){
-				if(d>31){
-					d=1;
-					month++;
-					if(month>12){
-						month=1;
-					}
-				}
-			}else if(month=='2'){
-				if(d>28){
-					d=1;
-					month++;
-				}
-			}else{
-				if(d>30){
-					d=1;
-					month++;
-				}
-			}
-			
-			
-			day_int++;
-			if(day_int >6){
-				day_int=0;
-			}
-			day=arrayDayStr[day_int];
-			}
-		}
-		
-		
+		var url="datelist.do"
+		var param="m_name="+movieNm+"&city="+city+"&district="+district;
+		sendRequest( url, param, resultFn4, "GET" );
 	}
 	
+	function resultFn4() {
+		
+	
+		if( xhr.readyState == 4 && xhr.status == 200 ){
+			var data = xhr.responseText;
+			var json = eval(data);
+			alert(data);
+		
+			//날짜 출력
+			var dt = new Date();
+			//달
+			var m = dt.getMonth() + 1;
+			var month = m+'';
+			//일
+			var d = dt.getDate() 
+			
+			
+			//요일(int형)
+			
+			var day_int = dt.getDay()//0~6
+			
+			//요일(리스트)        0    1     2     3     4   5   6
+			var arrayDayStr=['일' ,'월' , '화' , '수', '목','금','토'];
+			//현재 요일 출력
+			var day=arrayDayStr[day_int];
+			//년
+			var y = dt.getFullYear();
+			var year=y+'';
+			
+			var date_select = document.getElementById("date_select");
+			
+			
+			for(var i=0 ; i<2;i++){
+				for(var j=0 ; j <6 ;j++){
+				var option = document.createElement("option");
+				var date=d+"";
+				option.innerHTML=month+'월 '+ date + '일 ' + day + '요일';
+				option.value=month+'월 '+ date + '일 ' + day + '요일';
+				date_select.appendChild(option);
+				d++;//수정해야함(달별로 끝나는 날이 다르므로)
+				if(month=='1' ||month=='3' ||month=='5'||month=='7'||month=='8'||month=='10'||month=='12'){
+					if(d>31){
+						d=1;
+						month++;
+						if(month>12){
+							month=1;
+						}
+					}
+				}else if(month=='2'){
+					if(d>28){
+						d=1;
+						month++;
+					}
+				}else{
+					if(d>30){
+						d=1;
+						month++;
+					}
+				}
+				
+				
+				day_int++;
+				if(day_int >6){
+					day_int=0;
+				}
+				day=arrayDayStr[day_int];
+				}
+			}//for
+		
+		}//if
+	}//resultFn4()
+	
+		
+		
 	//상영 날짜 클릭시 실행
 	function date() {
 		var date= document.getElementById("date_select").value;
@@ -198,6 +240,7 @@ window.onload=function(){
 	}
 	
 </script>
+
 <style type="text/css">
 
 </style>

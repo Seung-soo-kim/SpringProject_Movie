@@ -20,13 +20,13 @@
 	<context:annotation-config/>
 	
 	<!-- MovieListController 수동생성 -->
- 	<beans:bean class="com.korea.movie.MovieListController">
-		<!-- <beans:property name="board_dao" ref="board_daoBean"/> -->
-	</beans:bean>
+ <!--<beans:bean class="com.korea.movie.MovieListController">
+		<beans:property name="board_dao" ref="board_daoBean"/>
+	</beans:bean> -->
 	
 	<!-- TicketController -->
 	<beans:bean class="com.korea.movie.TicketController">
-	
+			<beans:constructor-arg ref="theaterdao_Bean"/>
 	</beans:bean>
 	
 </beans:beans>
