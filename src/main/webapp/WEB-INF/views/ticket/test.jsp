@@ -76,6 +76,7 @@ window.onload=function(){
 	function movie() {
 		var movieNm = document.getElementById("movie_select").value;
 		
+		
 		//영화이름 저장
 		document.getElementById("m_name").value=movieNm;
 		document.getElementById("m_name").innerHTML=movieNm;
@@ -120,7 +121,7 @@ window.onload=function(){
 		var url="districtlist.do"
 		var param="m_name="+movieNm+"&city="+city;
 		sendRequest( url, param, resultFn3, "GET" );
-	}
+	}//city
 	
 	function resultFn3() {
 		if( xhr.readyState == 4 && xhr.status == 200 ){
@@ -137,7 +138,7 @@ window.onload=function(){
 				district_select.appendChild(option);
 			}
 		}
-	}
+	}//resultFn3
 	
 	//상영관 선택시 실행
 	function district() {
@@ -154,23 +155,28 @@ window.onload=function(){
 		var url="datelist.do"
 		var param="m_name="+movieNm+"&city="+city+"&district="+district;
 		sendRequest( url, param, resultFn4, "GET" );
-	}
+	}//district
+	
 	
 	function resultFn4() {
-		
-	
 		if( xhr.readyState == 4 && xhr.status == 200 ){
 			var data = xhr.responseText;
 			var json = eval(data);
-			alert(data);
-		
-			//날짜 출력
+			//[{"max_month":"06","max_date":"04","min_month":"05","min_date":"28" , 'date_o':'2' , 'day':'목요일'}]
+			//
+			var date_o = json[0].date_o *1;
+			
+			//요일
+			var day = json[0].day;
+			
+			//
+			
 			var dt = new Date();
 			//달
-			var m = dt.getMonth() + 1;
+			var m = json[0].min_month*1;
 			var month = m+'';
 			//일
-			var d = dt.getDate() 
+			var d =  json[0].min_date*1;
 			
 			
 			//요일(int형)
@@ -178,9 +184,16 @@ window.onload=function(){
 			var day_int = dt.getDay()//0~6
 			
 			//요일(리스트)        0    1     2     3     4   5   6
-			var arrayDayStr=['일' ,'월' , '화' , '수', '목','금','토'];
+			var arrayDayStr=['일요일' ,'월요일' , '화요일' , '수요일', '목요일','금요일','토요일'];
+			//해당 요일의 day_int 값 구하기
+			for(var i=0 ; i < arrayDayStr.length ; i++){
+				if(arrayDayStr[i]==day){
+					day_int=i;
+				}
+			}
+			
 			//현재 요일 출력
-			var day=arrayDayStr[day_int];
+			//var day=arrayDayStr[day_int];
 			//년
 			var y = dt.getFullYear();
 			var year=y+'';
@@ -188,42 +201,54 @@ window.onload=function(){
 			var date_select = document.getElementById("date_select");
 			
 			
-			for(var i=0 ; i<2;i++){
-				for(var j=0 ; j <6 ;j++){
-				var option = document.createElement("option");
-				var date=d+"";
-				option.innerHTML=month+'월 '+ date + '일 ' + day + '요일';
-				option.value=month+'월 '+ date + '일 ' + day + '요일';
-				date_select.appendChild(option);
-				d++;//수정해야함(달별로 끝나는 날이 다르므로)
-				if(month=='1' ||month=='3' ||month=='5'||month=='7'||month=='8'||month=='10'||month=='12'){
-					if(d>31){
-						d=1;
-						month++;
-						if(month>12){
-							month=1;
+			
+				for(var j=0 ; j <date_o+1 ;j++){
+					
+					var option = document.createElement("option");
+					//var date=d+"";
+					
+					option.innerHTML=month+'월 '+ d + '일 ' + day ;
+					if(month <10){
+						var mt = "0"+month;
+					}
+					if(d <10){
+						var da="0"+d;
+					}
+					option.value=mt+""+da+""+year;
+					
+					
+					date_select.appendChild(option);
+					d++;
+					if(month=='1' ||month=='3' ||month=='5'||month=='7'||month=='8'||month=='10'||month=='12'){
+						if(d>31){
+							d=1;
+							month++;
+							if(month>12){
+								month=1;
+							}
+						}
+					}else if(month=='2'){
+						if(d>28){
+							d=1;
+							month++;
+						}
+					}else{
+						if(d>30){
+							d=1;
+							month++;
 						}
 					}
-				}else if(month=='2'){
-					if(d>28){
-						d=1;
-						month++;
+	
+					day_int++;
+					
+					if(day_int >6){
+						day_int=0;
 					}
-				}else{
-					if(d>30){
-						d=1;
-						month++;
-					}
-				}
-				
-				
-				day_int++;
-				if(day_int >6){
-					day_int=0;
-				}
-				day=arrayDayStr[day_int];
-				}
-			}//for
+					
+					day=arrayDayStr[day_int];
+					
+				}//for-in
+			
 		
 		}//if
 	}//resultFn4()

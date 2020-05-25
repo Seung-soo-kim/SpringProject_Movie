@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 영화 상영 날짜 검색 -->
 	<select id="selectdate" resultType="vo.DateVO" parameterType="java.util.Map">
-		select max(date_s) max_date, min(date_s) min_date from theater 
+		select to_char(max(date_s),'mm') max_month,to_char(max(date_s),'dd') max_date, to_char(min(date_s),'mm') min_month, to_char(min(date_s),'dd') min_date,(max(date_s)-min(date_s)) date_o, to_char(min(date_s),'day') day from theater 
 		where m_name=#{m_name} and city=#{city} and district=#{district} 
 	</select>
 	

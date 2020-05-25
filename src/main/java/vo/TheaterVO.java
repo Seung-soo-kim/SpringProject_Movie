@@ -2,23 +2,17 @@ package vo;
 
 public class TheaterVO {
 	
-	private int lt_idx,seat_Total,month,date_i;
-	private String m_name,city,district,day,time;
-	
-	public int getMonth() {
-		return month;
-	}
-	public void setMonth(int month) {
-		this.month = month;
-	}
-	public int getDate_i() {
-		return date_i;
-	}
-	public void setDate_i(int date_i) {
-		this.date_i = date_i;
-	}
+	private int lt_idx,seat_Total;
+	private String m_name,city,district,time,date_s;
 	
 	
+	
+	public String getDate_s() {
+		return date_s;
+	}
+	public void setDate_s(String date_s) {
+		this.date_s = date_s;
+	}
 	public int getLt_idx() {
 		return lt_idx;
 	}
@@ -49,12 +43,7 @@ public class TheaterVO {
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-	public String getDay() {
-		return day;
-	}
-	public void setDay(String day) {
-		this.day = day;
-	}
+	
 	public String getTime() {
 		return time;
 	}
