@@ -10,6 +10,7 @@ import dao.TheaterDAO;
 import dao.TicketDAO;
 import vo.DateVO;
 import vo.TheaterVO;
+import vo.TicketVO;
 
 @Controller
 public class TicketController {
@@ -22,7 +23,7 @@ public class TicketController {
 	}
 	
 	
-	@RequestMapping(value= {"/"})
+	@RequestMapping("/")
 	public String test() {
 		return "WEB-INF/views/ticket/test.jsp";
 	}
@@ -59,6 +60,19 @@ public class TicketController {
 
 		return list;
 	}
+	
+	@RequestMapping("/timelist.do")
+	@ResponseBody
+	public List<TheaterVO> timelist(String m_name , String city , String district ,String date_s){
+		
+		List<TheaterVO> list=null;
+		
+		list=theater_dao.selectTime(m_name ,city,district,date_s);
+		
+		return list;
+	}
+	
+	
 }
 
 

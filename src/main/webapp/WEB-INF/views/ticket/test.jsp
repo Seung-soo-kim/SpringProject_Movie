@@ -74,15 +74,46 @@ window.onload=function(){
  
 	//영화 클릭시 실행되는 메서드
 	function movie() {
-		var movieNm = document.getElementById("movie_select").value;
-		
-		
 		//영화이름 저장
+		var movieNm = document.getElementById("movie_select").value;
 		document.getElementById("m_name").value=movieNm;
 		document.getElementById("m_name").innerHTML=movieNm;
 		
+		//영화 재 선택시 아래항목 리셋		
+		var district_select = document.getElementById("district_select");
+		var date_select = document.getElementById("date_select");
+		var city_select =document.getElementById("city_select");
+		if(city_select.options.length >1){
+	    
+		    for(var i=1; i<city_select.options.length; i++) {
+		    	city_select.options[i] = null;
+		    	city_select.options.length = 1;
+		    }
+		}
+		if(district_select.options.length >1){
+		    
+		    for(var i=1; i<district_select.options.length; i++) {
+		    	district_select.options[i] = null;
+		    	district_select.options.length = 1;
+		    }
+		}
+		if(date_select.options.length >1){
+		    
+		    for(var i=1; i<date_select.options.length; i++) {
+		    	date_select.options[i] = null;
+		    	date_select.options.length = 1;
+		    }
+		}
+		//영화 재선택시 ticket에 저장된 영화제목 이외의 항목 제거 
+	    document.getElementById("city").value="";
+	    document.getElementById("city").innerHTML="";
+	    document.getElementById("district").value="";
+	    document.getElementById("district").innerHTML="";
+	    document.getElementById("date").value="";
+	    document.getElementById("date").innerHTML="";
 		
-		//각 영화가 상영하는 지역을 DB에서 가져와 출력(나중에 DB로 추가할 예정)
+		
+		//각 영화가 상영하는 지역을 DB에서 가져와 출력
 		var url="citylist.do"
 		var param="m_name="+movieNm;
 		sendRequest( url, param, resultFn2, "GET" );
@@ -108,6 +139,8 @@ window.onload=function(){
 	
 	//지역 선택시 실행되는 메서드
 	function city() {
+		
+		//ticket에 아래 내용 저장
 		var movieNm = document.getElementById("movie_select").value;
 		var city= document.getElementById("city_select").value;
 		
@@ -115,8 +148,26 @@ window.onload=function(){
 		document.getElementById("city").value=city;
 		document.getElementById("city").innerHTML=city;
 		
+		//지역 재선택시 아래 항목 초기화
+		var district_select = document.getElementById("district_select");
+		var date_select = document.getElementById("date_select");
+		if(district_select.options.length >1){
+		    
+		    for(var i=1; i<district_select.options.length; i++) {
+		    	district_select.options[i] = null;
+		    	district_select.options.length = 1;
+		    }
+		}
+		if(date_select.options.length >1){
+		    
+		    for(var i=1; i<date_select.options.length; i++) {
+		    	date_select.options[i] = null;
+		    	date_select.options.length = 1;
+		    }
+		}
 		
-		//각 영화가 상영하는 지역의 상영관을 DB에서 가져와 출력(나중에 DB로 추가할 예정)
+		
+		//각 영화가 상영하는 지역의 상영관을 DB에서 가져와 출력
 		
 		var url="districtlist.do"
 		var param="m_name="+movieNm+"&city="+city;
@@ -142,15 +193,24 @@ window.onload=function(){
 	
 	//상영관 선택시 실행
 	function district() {
-		//
 		var movieNm = document.getElementById("movie_select").value;
 		var city= document.getElementById("city_select").value;
 		var district= document.getElementById("district_select").value;
 		
 		
+		//ticket에 아래 항목 저장
 		document.getElementById("district").value=district;
 		document.getElementById("district").innerHTML=district;
 		
+		//상영관 재선택시 아래 항목 초기화
+		var date_select = document.getElementById("date_select");
+		if(date_select.options.length >1){
+		    
+		    for(var i=1; i<date_select.options.length; i++) {
+		    	date_select.options[i] = null;
+		    	date_select.options.length = 1;
+		    }
+		}
 		
 		var url="datelist.do"
 		var param="m_name="+movieNm+"&city="+city+"&district="+district;
@@ -213,6 +273,8 @@ window.onload=function(){
 					}
 					if(d <10){
 						var da="0"+d;
+					}else{
+						var da = d+"";
 					}
 					option.value=mt+""+da+""+year;
 					
@@ -257,12 +319,28 @@ window.onload=function(){
 		
 	//상영 날짜 클릭시 실행
 	function date() {
+		var movieNm = document.getElementById("movie_select").value;
+		var city= document.getElementById("city_select").value;
+		var district= document.getElementById("district_select").value;
 		var date= document.getElementById("date_select").value;
+		
+		
 		document.getElementById("date").value=date;
 		document.getElementById("date").innerHTML=date;
-		
-		
-	}
+		var date_s=date+"";
+		var url="timelist.do";
+		var param="movieNm="+movieNm+"&city="+city+"&district="+district+"&date_s="+date_s;
+		alert(date_s);
+		sendRequest(url,param,resultFn5 , "get"); 
+	}//date
+	function resultFn5() {
+		if( xhr.readyState == 4 && xhr.status == 200 ){
+			var data = xhr.responseText;
+			var json = eval(data);
+			alert(data);
+			
+		}
+	} //resultFn5
 	
 </script>
 
@@ -308,11 +386,13 @@ window.onload=function(){
 <hr>
 
 <!--상영시간 출력  -->
-
+<select id="time_select" onchange="time();"><!-- 옵션을 바꿀 때마다time 메서드 실행 -->
+		<option>::시간을 선택하세요::</option>
+</select>
 
 <hr>
 <!-- 예매 정보 한번에 보기 -->
-<form action="">
+<form  action="">
 	<p name="m_name" id="m_name"></p>
 	<p name="city" id="city"></p>
 	<p name="district" id="district"></p>

@@ -48,4 +48,17 @@ public class TheaterDAO {
 		return list;
 		
 	}
+	
+	//시간 검색
+	public List<TheaterVO> selectTime(String m_name , String city , String district ,String date_s){
+		
+		HashMap<String , Object> map = new HashMap<String, Object>();
+		map.put("m_name",m_name);
+		map.put("city",city);
+		map.put("district",district);
+		map.put("date_s",date_s);
+		List<TheaterVO> list = sqlSession.selectList("t.selectTime",map);
+		return list;
+	}
+	
 }

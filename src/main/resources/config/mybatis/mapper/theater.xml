@@ -19,6 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where m_name=#{m_name} and city=#{city} and district=#{district} 
 	</select>
 	
+	<!-- 영화 상영 시간 검색  -->
+	<select id="selectTime" resultType="theater" parameterType="java.util.Map">
+		select time from theater where m_name=#{m_name} and city=#{city} and district=#{district} and date_s=#{date_s}
+		<!-- select time from theater where m_name='위대한 쇼맨' and city='서울' and district='강남' and date_s='05282020'; -->
+	</select>
 </mapper>
 
 
