@@ -2,7 +2,7 @@ package vo;
 
 public class TicketVO {
 	private int t_idx,seat_count;
-	private String m_name,id ,repRat ,seatNumber ,district,city;
+	private String m_name,id ,date_s ,seat ,district,city ,time;
 	public int getT_idx() {
 		return t_idx;
 	}
@@ -27,17 +27,24 @@ public class TicketVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getRepRat() {
-		return repRat;
+
+	public String getDate_s() {
+		return date_s;
 	}
-	public void setRepRat(String repRat) {
-		this.repRat = repRat;
+	public void setDate_s(String date_s) {
+		this.date_s = date_s;
 	}
-	public String getSeatNumber() {
-		return seatNumber;
+	public String getSeat() {
+		return seat;
 	}
-	public void setSeatNumber(String seatNumber) {
-		this.seatNumber = seatNumber;
+	public void setSeat(String seat) {
+		this.seat = seat;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
 	}
 	public String getDistrict() {
 		return district;
