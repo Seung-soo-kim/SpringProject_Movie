@@ -66,10 +66,15 @@ public class TicketController {
 	public List<TheaterVO> timelist(String m_name , String city , String district ,String date_s){
 		
 		List<TheaterVO> list=null;
-		
+		System.out.println();
 		list=theater_dao.selectTime(m_name ,city,district,date_s);
 		
 		return list;
+	}
+	
+	@RequestMapping("/ticketform.do")
+	public String ticketForm() {
+		return "WEB-INF/views/ticket/seat.jsp";
 	}
 	
 	
