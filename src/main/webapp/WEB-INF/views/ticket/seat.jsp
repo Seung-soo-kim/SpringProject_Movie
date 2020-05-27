@@ -111,28 +111,28 @@ window.onload=function(){
 			document.getElementById("ch").innerHTML=c;
 	}
 
-	var div =document.getElementById("set");
 	
 	//좌석 선택시 실행되는 메서드
    function send( id ) {
+	var div =document.getElementById("set");
 	var p = document.createElement("input");
-		
+      	p.innerHTML=id;
+      	p.id=id+"s";
+      	p.value=id;
+      	p.name=id;
+		p.readonly="readonly"
       var input = document.getElementById(id);
       //console.log(input.value);
       if(input.style.background=="red"){
-    	 
+    	var inp=document.getElementById(id+"s");
     	input.style.background="white";
     	count-=1;
-    	
-    	div.removeChild(p);
+    	div.removeChild(inp);
       }else if(count<total){
     	  
     	count+=1;
       	input.style.background="red";
       	console.log(count);
-      	p.innerHTML=id;
-      	p.value=id;
-      	p.name=id;
       	div.appendChild(p);
       }
 		
@@ -204,11 +204,14 @@ window.onload=function(){
       </div>
    </c:forEach>
 </div>
+<hr>
 <form action="">
 <div id="set">
+<h3>::선택한 좌석번호::</h3>
 
 </div>
+<input type="button" value="결재하기" onclick="">
 </form>
-   
+
 </body>
 </html>
