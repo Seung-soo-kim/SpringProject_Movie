@@ -25,7 +25,7 @@ public class TicketController {
 	
 	@RequestMapping("/")
 	public String test() {
-		return "WEB-INF/views/ticket/test.jsp";
+		return "WEB-INF/views/ticket/seat.jsp";
 	}
 	
 	@RequestMapping("/citylist.do")

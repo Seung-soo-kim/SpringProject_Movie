@@ -26,7 +26,7 @@ window.onload=function(){
 		var month = m + "";
 	}
 
-	var d = dt.getDate() - 5;
+	var d = dt.getDate() - 1;
 	if (d < 10) {
 		var day = "0" + d;
 	} else {
