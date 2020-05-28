@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>순위</title>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
+
 <script type="text/javascript">
 
 window.onload=function(){
@@ -26,7 +27,7 @@ window.onload=function(){
 		var month = m + "";
 	}
 
-	var d = dt.getDate() - 1;
+	var d = dt.getDate() - 5;
 	if (d < 10) {
 		var day = "0" + d;
 	} else {
@@ -37,6 +38,7 @@ window.onload=function(){
 	var year = y + "";
 
 	var result = year + month + day;
+	
     //192.168.1.101:9090/vs/list.do
     var url ='http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json';
     //전주 박스오피스순으로 출력(10위 까지만)
@@ -51,7 +53,7 @@ window.onload=function(){
        
        var data = xhr.responseText;
        var json=eval("[" + data + "]");
-     	
+     
        //id가 movie_select인 태그를 가져온다
        var movie_select =document.getElementById("movie_select")
        
@@ -508,11 +510,11 @@ window.onload=function(){
 <hr>
 <!-- 예매 정보 한번에 보기 -->
 <form  action="ticketform.do" method="get">
-	<input name="m_name" id="m_name">
-	<input name="city" id="city">
-	<input name="district" id="district">
-	<input name="date_s" id="date">
-	<input name="time" id="time">
+	<input name="m_name" id="m_name" readonly>
+	<input name="city" id="city" readonly>
+	<input name="district" id="district" readonly>
+	<input name="date_s" id="date" readonly>
+	<input name="time" id="time" readonly>
 	<input type="button" value="죄석 선택하기" onclick="send(this.form);">
 	
 </form>

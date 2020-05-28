@@ -1,8 +1,9 @@
-﻿	var total=0;//총인원수
+﻿//선택한 좌석수
+	var count=0;
+	var total=0;//총인원수
 	var a=0;//어른 카운트
 	var t=0;//청소년 카운트
 	var c=0;//어린이 카운트
-	
 	
 	//어른 카운트 메서드
 	function count1(i) {
@@ -23,6 +24,9 @@
 			a = i;
 			total+=i;
 		}
+			if(count>total){
+				alert("좌석수를 줄이세요");
+			}
 			//console.log(total);
 			document.getElementById("to").innerHTML=total;
 			document.getElementById("ad").innerHTML=a;
@@ -46,6 +50,9 @@
 		}else{
 			t = i;
 			total+=i;
+		}
+		if(count>total){
+			alert("좌석수를 줄이세요");
 		}
 			//console.log(total);
 			document.getElementById("to").innerHTML=total;
@@ -71,15 +78,40 @@
 			c = i;
 			total+=i;
 		}
+		if(count>total){
+			alert("좌석수를 줄이세요");
+		}
 			//console.log(total);
 			document.getElementById("to").innerHTML=total;
 			document.getElementById("ch").innerHTML=c;
 	}
 
-
-
-
-
+	
+	//좌석 선택시 실행되는 메서드
+   function send( id ) {
+	var div =document.getElementById("set");
+	var p = document.createElement("input");
+      	p.innerHTML=id;
+      	p.id=id+"s";
+      	p.value=id;
+      	p.name=id;
+		p.readOnly="false";
+      var input = document.getElementById(id);
+      //console.log(input.value);
+      if(input.style.background=="red"){
+    	var inp=document.getElementById(id+"s");
+    	input.style.background="white";
+    	count-=1;
+    	div.removeChild(inp);
+      }else if(count<total){
+    	  
+    	count+=1;
+      	input.style.background="red";
+      	console.log(count);
+      	div.appendChild(p);
+      }
+		
+   }
 
 
 
