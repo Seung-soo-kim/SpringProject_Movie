@@ -78,6 +78,20 @@ public class TicketController {
 	}
 	
 	
+	@RequestMapping("/paymoney.do")
+	public String payMoney(String[] seat) {
+		
+		
+		
+		return "WEB-INF/views/ticket/pay.jsp";
+	}
+	
+	@RequestMapping("/saveTicket.do")
+	@ResponseBody
+	public String saveTicket(TicketVO vo) {
+		System.out.println(vo.getSeat());
+		return "res";
+	}
 }
 
 

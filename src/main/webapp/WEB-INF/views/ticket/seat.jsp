@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,12 +62,14 @@ window.onload=function(){
 			<td id="to">0</td>
 			<td>명</td>
 		</tr>
-      
+      	<tr>
+      		<td>합계</td>
+      		<td id="m_t" colspan="3" align="right"></td>
+      		<td>원</td>
+      	</tr>
    </table>
    </div>
-   <div>
-      ${param.m_name }<br> ${param.city}<br> ${param.district}<br> ${param.date_s}<br> ${param.time}
-   </div>
+   
 </div>
 
 <hr>
@@ -81,7 +84,7 @@ window.onload=function(){
          <c:forEach var="j" begin="1" end="7" step="1">
          	
                <input name="${i}${j}" type="button" id="${i}${j}"
-               value="${i}${j}" class="seat" onclick="send('${i}${j}');">
+               value="${i}${j}" class="seat" onclick="seat('${i}${j}');">
          	
          	
             
@@ -90,12 +93,22 @@ window.onload=function(){
    </c:forEach>
 </div>
 <hr>
-<form action="">
+<form action="paymoney.do" method="get">
 <div id="set">
 <h3>::선택한 좌석번호::</h3>
 
 </div>
-<input type="button" value="결재하기" onclick="">
+<h3>::예매 정보::</h3>
+<input name="m_name" value="${param.m_name }" readonly>
+<input name="city" value="${param.city }" readonly>
+<input name="district" value="${param.district }" readonly>
+<input name="date_s" value="${param.date_s }" readonly>
+<input name="time" value="${param.time }" readonly>
+<input name="total_m" id="total_m" readonly>
+<input name="seat_count" id="seat_count" type="hidden">
+<div>
+<input type="button" value="결재하기" onclick="send(this.form);">
+</div>
 </form>
 
 </body>

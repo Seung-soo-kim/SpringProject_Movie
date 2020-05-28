@@ -1,19 +1,20 @@
 package vo;
 
 public class TicketVO {
-	private int t_idx,seat_count;
-	private String m_name,id ,date_s ,seat ,district,city ,time;
+	private int t_idx;
+	private String m_name,id ,date_s ,seat ,district,city ,time ,pay_money;
 	public int getT_idx() {
 		return t_idx;
 	}
 	public void setT_idx(int t_idx) {
 		this.t_idx = t_idx;
 	}
-	public int getSeat_count() {
-		return seat_count;
+
+	public String getPay_money() {
+		return pay_money;
 	}
-	public void setSeat_count(int seat_count) {
-		this.seat_count = seat_count;
+	public void setPay_money(String pay_money) {
+		this.pay_money = pay_money;
 	}
 	public String getM_name() {
 		return m_name;
