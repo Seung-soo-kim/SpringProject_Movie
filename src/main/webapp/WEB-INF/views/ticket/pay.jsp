@@ -1,25 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%
 	request.setCharacterEncoding("UTF-8");
 	String[] arr= request.getParameterValues("seat");
-	request.setAttribute("arr", arr);
+	String seat="&seats=";
+	for(int i = 0 ; i < arr.length ;i++){
+		seat+=arr[i];
+		if(i != (arr.length -1 )){
+			seat+="&seats=";
+		}
+				
+	}
+	request.setAttribute("seat", seat);
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript"  src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
- function pay() {
-	 for(var i = 0 ; i < <%=arr.length%>  ; i++){
-	 saveTicket(i);
- 
-	 }
- }
- 	function saveTicket() {
+ 	function pay() {
  		var url="saveTicket.do";
-		var param="m_name=${param.m_name}&id=abcd&city=${param.city}&seat=<%=arr[0]%>&district=${param.district}&date_s=${param.date_s}&time=${param.time}&pay_money=${param.total_m}";
+		var param="m_name=${param.m_name}&id=abcd&city=${param.city}<%=seat%>&district=${param.district}&date_s=${param.date_s}&time=${param.time}&pay_money=${param.total_m}";
 		sendRequest(url , param , resultFn , "GET");
 	}
 	function resultFn() {

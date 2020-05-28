@@ -105,7 +105,6 @@ window.onload=function(){
 <input name="date_s" value="${param.date_s }" readonly>
 <input name="time" value="${param.time }" readonly>
 <input name="total_m" id="total_m" readonly>
-<input name="seat_count" id="seat_count" type="hidden">
 <div>
 <input type="button" value="결재하기" onclick="send(this.form);">
 </div>

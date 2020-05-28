@@ -140,7 +140,7 @@
       	input.style.background="red";
       	console.log(count);
       	div.appendChild(p);
-      	document.getElementById("seat_count").value=count;
+  
       	
       }
 		
