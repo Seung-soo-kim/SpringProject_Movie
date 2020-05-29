@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="saveticket" parameterType="vo.TicketVO">
 	insert into ticket values
-	(seq_ticket_idx.nextval ,#{m_name} ,#{id} , #{city}, #{district} ,TO_DATE(#{date_s}, 'MMDDYYYY'),#{time} ,#{seat} ,#{pay_money} )
+	(seq_ticket_idx.nextval ,#{m_name} ,#{id} , #{city}, #{district} ,TO_DATE(#{date_s}, 'MMDDYYYY'),#{time} ,#{seat} ,#{pay_money},#{seat_count} )
 	</insert>
 	
 </mapper>

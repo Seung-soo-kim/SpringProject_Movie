@@ -66,4 +66,16 @@ public class TheaterDAO {
 		return list;
 	}
 	
+	public int seatchange(int count , String m_name , String city , String district ,String date_s ,String time) {
+		HashMap<String , Object> map = new HashMap();
+		map.put("count",count);
+		map.put("m_name",m_name);
+		map.put("city",city);
+		map.put("district",district);
+		map.put("date_s",date_s);
+		map.put("time",time);
+		int res = sqlSession.update("t.seatchange" , map);
+		return res;
+	}
+	
 }

@@ -13,7 +13,8 @@ public class TicketDAO {
 	}
 	
 	public int saveticket(TicketVO vo) {
-		
+		System.out.println(vo.getM_name());
+		System.out.println(vo.getDate_s());
 		int res = sqlSession.insert("ticket.saveticket" , vo);
 		return res ;
 	}

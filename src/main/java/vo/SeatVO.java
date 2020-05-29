@@ -1,26 +1,13 @@
 package vo;
 
-public class TicketVO {
-	private int t_idx ,seat_count;
-	private String m_name,id ,date_s ,seat ,district,city ,time ,pay_money;
-	public int getT_idx() {
-		return t_idx;
+public class SeatVO {
+	private int s_idx;
+	private String m_name,id ,date_s ,seat ,district,city ,time;
+	public int getS_idx() {
+		return s_idx;
 	}
-	public int getSeat_count() {
-		return seat_count;
-	}
-	public void setSeat_count(int seat_count) {
-		this.seat_count = seat_count;
-	}
-	public void setT_idx(int t_idx) {
-		this.t_idx = t_idx;
-	}
-
-	public String getPay_money() {
-		return pay_money;
-	}
-	public void setPay_money(String pay_money) {
-		this.pay_money = pay_money;
+	public void setS_idx(int s_idx) {
+		this.s_idx = s_idx;
 	}
 	public String getM_name() {
 		return m_name;
@@ -34,7 +21,6 @@ public class TicketVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getDate_s() {
 		return date_s;
 	}
@@ -46,12 +32,6 @@ public class TicketVO {
 	}
 	public void setSeat(String seat) {
 		this.seat = seat;
-	}
-	public String getTime() {
-		return time;
-	}
-	public void setTime(String time) {
-		this.time = time;
 	}
 	public String getDistrict() {
 		return district;
@@ -65,8 +45,12 @@ public class TicketVO {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
-	
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	
 	
 }

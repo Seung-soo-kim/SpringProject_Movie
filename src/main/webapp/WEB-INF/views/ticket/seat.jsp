@@ -18,11 +18,29 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 window.onload=function(){
-	//페이지 실행시 DB에서 예약된 자리 정보 가져온다
-	
+	already_seat();
 	
 }	
-	
+	function already_seat() {
+		var url="fountseat.do";
+		var param = "m_name=${param.m_name}&city=${param.city}&district=${param.district}&date_s=${param.date_s}&time=${param.time}";
+		sendRequest(url , param , resultFn6 , "get");
+	}
+	function resultFn6() {
+		if(xhr.readyState==4 && xhr.status==200){
+		 var data = xhr.responseText;
+		 var json=eval(data);
+		 for(var i = 0 ; i < json.length ; i++){
+			
+			document.getElementById(json[i].seat).disabled=true;
+		 	document.getElementById(json[i].seat).style.background="gray";
+		 	//$( 'h1' ).removeAttr( 'title' );
+			 
+		 }
+		
+		}
+		
+	}
 	
 
 </script>
@@ -80,14 +98,9 @@ window.onload=function(){
 <div >
    <c:forEach var="i" items="A열,B열,C열,D열,E열,F열,G열">
       <div>
-            
          <c:forEach var="j" begin="1" end="7" step="1">
-         	
                <input name="${i}${j}" type="button" id="${i}${j}"
                value="${i}${j}" class="seat" onclick="seat('${i}${j}');">
-         	
-         	
-            
          </c:forEach>
       </div>
    </c:forEach>

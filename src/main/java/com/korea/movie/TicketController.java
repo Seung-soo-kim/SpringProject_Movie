@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import dao.SeatDAO;
 import dao.TheaterDAO;
 import dao.TicketDAO;
 import vo.DateVO;
+import vo.SeatVO;
 import vo.TheaterVO;
 import vo.TicketVO;
 
@@ -17,10 +19,11 @@ public class TicketController {
 	
 	TicketDAO ticket_dao;
 	TheaterDAO theater_dao;
-	
-	public TicketController( TheaterDAO theater_dao , TicketDAO ticket_dao) {
+	SeatDAO seat_dao;
+	public TicketController( TheaterDAO theater_dao , TicketDAO ticket_dao, SeatDAO seat_dao) {
 		this.theater_dao=theater_dao;
 		this.ticket_dao = ticket_dao;
+		this.seat_dao = seat_dao;
 	}
 	
 	
@@ -89,18 +92,39 @@ public class TicketController {
 	
 	@RequestMapping("/saveTicket.do")
 	@ResponseBody
-	public String saveTicket(String[] seats ,TicketVO vo) {
+	public String saveTicket(String[] seats ,TicketVO vo ,SeatVO so, int seat_count ) {
 		int res=0;
+		String seat="";
 		for(int i = 0 ; i < seats.length ; i++) {
-			vo.setSeat(seats[i]);
-			res=ticket_dao.saveticket(vo);
+			so.setSeat(seats[i]);
+			seat_dao.seatinsert(so);
+			seat+=seats[i];
+			if(i != seats.length -1) {
+				seat+=",";
+			}
 		}
-		if(res==1) {
-		return "성공";
-		}else {
-			return "실패";
-		}
+		vo.setSeat_count(seat_count);
+		vo.setSeat(seat);
+		res=ticket_dao.saveticket(vo);
+		theater_dao.seatchange(seat_count, vo.getM_name() ,vo.getCity() , vo.getDistrict() ,vo.getDate_s() , vo.getTime());
+		System.out.println(seat);
+		return "";
 		
+	}
+	
+	@RequestMapping("/saveseat.do")
+	public String saveSeat() { 
+		
+		return "WEB-INF/views/ticket/test.jsp";
+	}
+	
+	
+	@RequestMapping("/fountseat.do")
+	@ResponseBody
+	public List<SeatVO> fountSeat(SeatVO vo){
+		List<SeatVO> list = null;
+		list = seat_dao.foundseat(vo);
+		return list;
 	}
 }
 

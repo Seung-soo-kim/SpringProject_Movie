@@ -24,13 +24,13 @@
 <script type="text/javascript">
  	function pay() {
  		var url="saveTicket.do";
-		var param="m_name=${param.m_name}&id=abcd&city=${param.city}<%=seat%>&district=${param.district}&date_s=${param.date_s}&time=${param.time}&pay_money=${param.total_m}";
+		var param="m_name=${param.m_name}&id=abcd&city=${param.city}<%=seat%>&district=${param.district}&date_s=${param.date_s}&time=${param.time}&pay_money=${param.total_m}&seat_count=${param.seat_count}";
 		sendRequest(url , param , resultFn , "GET");
 	}
 	function resultFn() {
 		if(xhr.readyState==4 && xhr.status==200){
-			var data = xhr.responseText;
-			alert(data);
+			alert("결재 성공");
+			location.href="saveseat.do";
 		}
 	} 
 	

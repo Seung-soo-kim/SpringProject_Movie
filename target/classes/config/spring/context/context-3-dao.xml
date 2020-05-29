@@ -9,5 +9,8 @@
 	<bean id="ticketdao_Bean" class="dao.TicketDAO">
 		<constructor-arg ref="sqlSessionBean"/>
 	</bean>
+	<bean id="seatdao_Bean" class="dao.SeatDAO">
+		<constructor-arg ref="sqlSessionBean"/>
+	</bean>
 	
 </beans>
