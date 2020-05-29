@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 <style type="text/css">
 .seat {
-            width: 30px;
-            height: 30px;
+            width: 45px;
+            height: 45px;
         }
 
 </style>
@@ -78,7 +78,7 @@ window.onload=function(){
    
 
 <div >
-   <c:forEach var="i" items="A,B,C,D,E,F,G">
+   <c:forEach var="i" items="A열,B열,C열,D열,E열,F열,G열">
       <div>
             
          <c:forEach var="j" begin="1" end="7" step="1">
@@ -105,6 +105,7 @@ window.onload=function(){
 <input name="date_s" value="${param.date_s }" readonly>
 <input name="time" value="${param.time }" readonly>
 <input name="total_m" id="total_m" readonly>
+<input name="seat_count" id="seat_count" readonly>
 <div>
 <input type="button" value="결재하기" onclick="send(this.form);">
 </div>

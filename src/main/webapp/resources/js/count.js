@@ -10,6 +10,8 @@
 	var c_m=4000;//어린이 요금
 	var m_total=0;//총합 요금
 	//어른 카운트 메서드
+	
+	
 	function count1(i) {
 		//인원 선택시 실행 되는 메서드
 		i=i*1;
@@ -118,6 +120,8 @@
 	}
 
 	
+	
+	
 	//좌석 선택시 실행되는 메서드
    function seat( id ) {
 	var div =document.getElementById("set");
@@ -133,12 +137,14 @@
     	var inp=document.getElementById(id+"s");
     	input.style.background="white";
     	count-=1;
+    	document.getElementById("seat_count").value=count;
     	div.removeChild(inp);
       }else if(count<total){
     	  
     	count+=1;
       	input.style.background="red";
       	console.log(count);
+      	document.getElementById("seat_count").value=count;
       	div.appendChild(p);
   
       	
