@@ -6,5 +6,8 @@
 	<bean id="theaterdao_Bean" class="dao.TheaterDAO">
 		<constructor-arg ref="sqlSessionBean"/>
 	</bean>
+	<bean id="ticketdao_Bean" class="dao.TicketDAO">
+		<constructor-arg ref="sqlSessionBean"/>
+	</bean>
 	
 </beans>

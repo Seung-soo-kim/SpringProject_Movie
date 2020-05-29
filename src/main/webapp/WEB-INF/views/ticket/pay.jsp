@@ -29,7 +29,8 @@
 	}
 	function resultFn() {
 		if(xhr.readyState==4 && xhr.status==200){
-			alert("성공");
+			var data = xhr.responseText;
+			alert(data);
 		}
 	} 
 	

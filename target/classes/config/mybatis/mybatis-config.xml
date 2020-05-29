@@ -14,5 +14,6 @@
 	
 	<mappers>
 		<mapper resource="config/mybatis/mapper/theater.xml" />
+		<mapper resource="config/mybatis/mapper/ticket.xml" />
 	</mappers>
 </configuration>

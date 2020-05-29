@@ -27,6 +27,7 @@
 	<!-- TicketController -->
 	<beans:bean class="com.korea.movie.TicketController">
 			<beans:constructor-arg ref="theaterdao_Bean"/>
+			<beans:constructor-arg ref="ticketdao_Bean"/>
 	</beans:bean>
 	
 </beans:beans>

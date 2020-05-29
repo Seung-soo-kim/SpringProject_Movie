@@ -15,11 +15,12 @@ import vo.TicketVO;
 @Controller
 public class TicketController {
 	
-	//TicketDAO ticket_dao;
+	TicketDAO ticket_dao;
 	TheaterDAO theater_dao;
 	
-	public TicketController( TheaterDAO theater_dao) {
+	public TicketController( TheaterDAO theater_dao , TicketDAO ticket_dao) {
 		this.theater_dao=theater_dao;
+		this.ticket_dao = ticket_dao;
 	}
 	
 	
@@ -88,9 +89,18 @@ public class TicketController {
 	
 	@RequestMapping("/saveTicket.do")
 	@ResponseBody
-	public String saveTicket(TicketVO vo) {
-		System.out.println(vo.getSeat());
-		return "res";
+	public String saveTicket(String[] seats ,TicketVO vo) {
+		int res=0;
+		for(int i = 0 ; i < seats.length ; i++) {
+			vo.setSeat(seats[i]);
+			res=ticket_dao.saveticket(vo);
+		}
+		if(res==1) {
+		return "성공";
+		}else {
+			return "실패";
+		}
+		
 	}
 }
 
