@@ -28,6 +28,7 @@ public class TicketController {
 	TicketDAO ticket_dao;
 	TheaterDAO theater_dao;
 	SeatDAO seat_dao;
+	
 	public TicketController( TheaterDAO theater_dao , TicketDAO ticket_dao, SeatDAO seat_dao) {
 		this.theater_dao=theater_dao;
 		this.ticket_dao = ticket_dao;
