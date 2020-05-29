@@ -10,11 +10,13 @@
 	
 	<typeAliases>
 		<typeAlias type="vo.TheaterVO" alias="theater"/>
+		<typeAlias alias="user" type="vo.UserVO"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="config/mybatis/mapper/theater.xml" />
 		<mapper resource="config/mybatis/mapper/ticket.xml" />
 		<mapper resource="config/mybatis/mapper/seat.xml" />
+		<mapper resource="config/mybatis/mapper/user.xml"/>
 	</mappers>
 </configuration>

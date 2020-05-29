@@ -24,7 +24,7 @@
 <script type="text/javascript">
  	function pay() {
  		var url="saveTicket.do";
-		var param="m_name=${param.m_name}&id=abcd&city=${param.city}<%=seat%>&district=${param.district}&date_s=${param.date_s}&time=${param.time}&pay_money=${param.total_m}&seat_count=${param.seat_count}";
+		var param="m_name=${param.m_name}&id=${sessionScope.user.id}&city=${param.city}<%=seat%>&district=${param.district}&date_s=${param.date_s}&time=${param.time}&pay_money=${param.total_m}&seat_count=${param.seat_count}";
 		sendRequest(url , param , resultFn , "GET");
 	}
 	function resultFn() {

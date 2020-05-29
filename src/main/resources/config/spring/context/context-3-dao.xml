@@ -13,4 +13,8 @@
 		<constructor-arg ref="sqlSessionBean"/>
 	</bean>
 	
+	<bean class="dao.UserDAO" id="user_daoBean">
+		<property ref="sqlSessionBean" name="sqlSession"/>
+	</bean>
+	
 </beans>

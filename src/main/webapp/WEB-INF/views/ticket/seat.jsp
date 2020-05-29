@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@include file="../user/check_login.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@ window.onload=function(){
 }	
 	function already_seat() {
 		var url="fountseat.do";
-		var param = "m_name=${param.m_name}&city=${param.city}&district=${param.district}&date_s=${param.date_s}&time=${param.time}";
+		var param = "m_name=${sessionScope.vo.m_name}&city=${sessionScope.vo.city}&district=${sessionScope.vo.district}&date_s=${sessionScope.vo.date_s}&time=${sessionScope.vo.time}";
 		sendRequest(url , param , resultFn6 , "get");
 	}
 	function resultFn6() {
@@ -34,7 +35,7 @@ window.onload=function(){
 			
 			document.getElementById(json[i].seat).disabled=true;
 		 	document.getElementById(json[i].seat).style.background="gray";
-		 	//$( 'h1' ).removeAttr( 'title' );
+		 
 			 
 		 }
 		
@@ -112,11 +113,11 @@ window.onload=function(){
 
 </div>
 <h3>::예매 정보::</h3>
-<input name="m_name" value="${param.m_name }" readonly>
-<input name="city" value="${param.city }" readonly>
-<input name="district" value="${param.district }" readonly>
-<input name="date_s" value="${param.date_s }" readonly>
-<input name="time" value="${param.time }" readonly>
+<input name="m_name" value="${sessionScope.vo.m_name}" readonly>
+<input name="city" value="${sessionScope.vo.city}" readonly>
+<input name="district" value="${sessionScope.vo.district}" readonly>
+<input name="date_s" value="${sessionScope.vo.date_s}" readonly>
+<input name="time" value="${sessionScope.vo.time}" readonly>
 <input name="total_m" id="total_m" readonly>
 <input name="seat_count" id="seat_count" readonly>
 <div>

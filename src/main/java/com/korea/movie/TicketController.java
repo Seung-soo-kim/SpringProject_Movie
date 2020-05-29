@@ -2,6 +2,10 @@ package com.korea.movie;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import dao.SeatDAO;
 import dao.TheaterDAO;
 import dao.TicketDAO;
+import vo.CheckVO;
 import vo.DateVO;
 import vo.SeatVO;
 import vo.TheaterVO;
@@ -16,6 +21,9 @@ import vo.TicketVO;
 
 @Controller
 public class TicketController {
+	
+	@Autowired
+	HttpServletRequest request;
 	
 	TicketDAO ticket_dao;
 	TheaterDAO theater_dao;
@@ -77,11 +85,16 @@ public class TicketController {
 	}
 	
 	@RequestMapping("/ticketform.do")
-	public String ticketForm() {
+	public String ticketForm(HttpSession session , CheckVO vo) {
+		 session = request.getSession();
+		 session.setAttribute("vo", vo);
 		return "WEB-INF/views/ticket/seat.jsp";
 	}
-	
-	
+	@RequestMapping("/ticketform2.do")
+	public String ticketForm() {
+		
+		return "WEB-INF/views/ticket/seat.jsp";
+	}
 	@RequestMapping("/paymoney.do")
 	public String payMoney(String[] seat) {
 		
@@ -113,8 +126,8 @@ public class TicketController {
 	}
 	
 	@RequestMapping("/saveseat.do")
-	public String saveSeat() { 
-		
+	public String saveSeat(HttpSession session) { 
+		session.removeAttribute("vo");
 		return "WEB-INF/views/ticket/test.jsp";
 	}
 	
