@@ -66,6 +66,7 @@ public class TheaterDAO {
 		return list;
 	}
 	
+	//좌석수 줄이기 
 	public int seatchange(int count , String m_name , String city , String district ,String date_s ,String time) {
 		HashMap<String , Object> map = new HashMap();
 		map.put("count",count);

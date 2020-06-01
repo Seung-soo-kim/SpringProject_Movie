@@ -25,9 +25,9 @@ public class TicketController {
 	@Autowired
 	HttpServletRequest request;
 	
-	TicketDAO ticket_dao;
-	TheaterDAO theater_dao;
-	SeatDAO seat_dao;
+	TicketDAO ticket_dao;//각 회원의 예매 정보DAO
+	TheaterDAO theater_dao;//각 극장정보 DAO
+	SeatDAO seat_dao;//좌석 정보 DAO
 	
 	public TicketController( TheaterDAO theater_dao , TicketDAO ticket_dao, SeatDAO seat_dao) {
 		this.theater_dao=theater_dao;
@@ -35,12 +35,13 @@ public class TicketController {
 		this.seat_dao = seat_dao;
 	}
 	
-	
+	//합칠때 지워도댐 
 	@RequestMapping("/")
 	public String test() {
-		return "WEB-INF/views/ticket/test.jsp";
+		return "WEB-INF/views/ticket/ticket_form.jsp";
 	}
 	
+	//해당 영화가 상영하는 지역 선택 
 	@RequestMapping("/citylist.do")
 	@ResponseBody
 	public List<TheaterVO> citylist(String m_name){
@@ -52,6 +53,7 @@ public class TicketController {
 		return list;
 	}
 	 
+	//해당 지역을 선택후 그 지역의 구 선택 
 	@RequestMapping("/districtlist.do")
 	@ResponseBody
 	public List<TheaterVO> districtlist(String m_name , String city){
@@ -63,6 +65,7 @@ public class TicketController {
 		return list;
 	}
 	
+	//해당 구 선택후 날짜 선택 
 	@RequestMapping("/datelist.do")
 	@ResponseBody
 	public List<DateVO> datelist(String m_name , String city , String district){
@@ -74,6 +77,7 @@ public class TicketController {
 		return list;
 	}
 	
+	//날짜 선택후 영화 사영 시간 선택 
 	@RequestMapping("/timelist.do")
 	@ResponseBody
 	public List<TheaterVO> timelist(String m_name , String city , String district ,String date_s){
@@ -85,17 +89,22 @@ public class TicketController {
 		return list;
 	}
 	
+	//좌석 선택 페이지로 넘어가기전 세션에 예매 정보 저장
 	@RequestMapping("/ticketform.do")
 	public String ticketForm(HttpSession session , CheckVO vo) {
 		 session = request.getSession();
 		 session.setAttribute("vo", vo);
 		return "WEB-INF/views/ticket/seat.jsp";
 	}
+	
+	//좌석 선택 페이지로 넘어가기전 로그인 성공시 오는 메서드
 	@RequestMapping("/ticketform2.do")
 	public String ticketForm() {
 		
 		return "WEB-INF/views/ticket/seat.jsp";
 	}
+	
+	//좌석 선택후 결제 페이지로 넘어가는 메서드
 	@RequestMapping("/paymoney.do")
 	public String payMoney(String[] seat) {
 		
@@ -104,6 +113,7 @@ public class TicketController {
 		return "WEB-INF/views/ticket/pay.jsp";
 	}
 	
+	//결재후 각 ticket , seat , theater DB에 저장 
 	@RequestMapping("/saveTicket.do")
 	@ResponseBody
 	public String saveTicket(String[] seats ,TicketVO vo ,SeatVO so, int seat_count ) {
@@ -126,13 +136,14 @@ public class TicketController {
 		
 	}
 	
+	//결재 성공후 세션에 저장된 예매 정보 삭제 
 	@RequestMapping("/saveseat.do")
 	public String saveSeat(HttpSession session) { 
 		session.removeAttribute("vo");
-		return "WEB-INF/views/ticket/test.jsp";
+		return "WEB-INF/views/ticket/ticket_form.jsp";
 	}
 	
-	
+	//예매된 좌석 조회하고 좌석 페이지에 전달하는 메서드 
 	@RequestMapping("/fountseat.do")
 	@ResponseBody
 	public List<SeatVO> fountSeat(SeatVO vo){

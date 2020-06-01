@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%
+	//seat를 배열로 받기
 	request.setCharacterEncoding("UTF-8");
 	String[] arr= request.getParameterValues("seat");
 	String seat="&seats=";
