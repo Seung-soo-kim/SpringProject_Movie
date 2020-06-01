@@ -144,7 +144,7 @@ public class TicketController {
 	}
 	
 	//예매된 좌석 조회하고 좌석 페이지에 전달하는 메서드 
-	@RequestMapping("/fountseat.do")
+	@RequestMapping("/findseat.do")
 	@ResponseBody
 	public List<SeatVO> fountSeat(SeatVO vo){
 		List<SeatVO> list = null;

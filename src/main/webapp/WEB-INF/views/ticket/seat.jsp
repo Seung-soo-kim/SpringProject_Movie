@@ -24,7 +24,7 @@ window.onload=function(){
 }	
 	//예약된 좌석 클릭못하게 막기
 	function already_seat() {
-		var url="fountseat.do";
+		var url="findseat.do";
 		var param = "m_name=${sessionScope.vo.m_name}&city=${sessionScope.vo.city}&district=${sessionScope.vo.district}&date_s=${sessionScope.vo.date_s}&time=${sessionScope.vo.time}";
 		sendRequest(url , param , resultFn6 , "get");
 	}

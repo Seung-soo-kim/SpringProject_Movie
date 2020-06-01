@@ -55,7 +55,7 @@ create table ticket(
 	city varchar2(100),--상영지역
 	district varchar2(100),--각 지역별 위치
 	date_s date,--상영날짜
-	time varchar2(10),--상영시간
+	time varchar2(100),--상영시간
 	seat varchar2(10),--좌석 번호
 	pay_money varchar2(100)--결재금액	
 ); -->

@@ -10,7 +10,14 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <style type="text/css">
 	select{width: 170px;}
-	option{align-content: content }
+	   ul{
+            
+            list-style: none;
+        }
+          .change_back{
+            background-color: red;
+            color:white;
+        }
 </style>
 <script type="text/javascript">
 
@@ -67,34 +74,30 @@ window.onload=function(){
        
       for(var i=0 ; i<json[0].boxOfficeResult.weeklyBoxOfficeList.length ; i++){
     	  
-    	  var option = document.createElement("option");
-    	  option.innerHTML =json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;//영화목록
-    	  option.value=json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;	
+    	  var li = document.createElement("li");
+    	  li.innerHTML =json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;//영화목록
+    	  li.value=json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;	
 			
-		  movie_select.appendChild(option);
-    	  
-    	  
+		  movie_select.appendChild(li);
+		  
+		  movie_select.on("click","li",movie);
+		  
       }
-       
        
     }  
     
  }
+     
+ 	
+ 	
  
  	//---------------------------------------------------------------------
  
  
 	//영화 클릭시 실행되는 메서드
-	function movie() {
- 		
+	function movie(movieNm) {
 		//영화이름 저장
-		var movieNm = document.getElementById("movie_select").value;
-		if(movieNm==''){
-			document.getElementById("m_name").value='';
-			document.getElementById("m_name").innerHTML='';
-			alert("영화를 선택하세요");
-			return;
-		}
+		//var movieNm = document.getElementById("movie_select").value;
 		document.getElementById("m_name").value=movieNm;
 		document.getElementById("m_name").innerHTML=movieNm;
 		
@@ -173,12 +176,7 @@ window.onload=function(){
 		
 		var movieNm = document.getElementById("movie_select").value;
 		var city= document.getElementById("city_select").value;
-		if(city==''){
-			document.getElementById("city").value=city;
-			document.getElementById("city").innerHTML=city;	
-			alert("지역을 선택하세요");
-			return;
-		}
+		
 		
 		
 		//ticket에 아래 내용 저장
@@ -252,12 +250,7 @@ window.onload=function(){
 		var district= document.getElementById("district_select").value;
 		
 		//
-		if(district==''){
-			document.getElementById("district").value=district;
-			document.getElementById("district").innerHTML=district;
-			alert("지역을 선택하세요");
-			return;
-		}
+		
 		
 		//ticket에 아래 항목 저장
 		document.getElementById("district").value=district;
@@ -400,13 +393,6 @@ window.onload=function(){
 		var district= document.getElementById("district_select").value;
 		var date= document.getElementById("date_select").value;
 		
-		if(date==''){
-			document.getElementById("date").value=date;
-			document.getElementById("date").innerHTML=date;
-			alert("상세지역을 선택하세요");
-			return;
-		}
-		
 		document.getElementById("date").value=date;
 		document.getElementById("date").innerHTML=date;
 		
@@ -455,13 +441,6 @@ window.onload=function(){
 	//시간 선택시 실행되는 메서드
 	function time() {
 		var time = document.getElementById("time_select").value;
-		if(time==''){
-			document.getElementById("time").value=time;
-			document.getElementById("time").innerHTML=time;
-			alert("상영시간을 선택하세요");
-			return;
-		}
-		
 		document.getElementById("time").value=time;
 		document.getElementById("time").innerHTML=time;
 	}
@@ -516,23 +495,30 @@ window.onload=function(){
 <div>
 
 <!-- 영화목록 -->
+<ul id="movie_select">
+	<h4>::박스오피스 순위::</h4>
+</ul>
+<!-- 
 <select id="movie_select" onchange="movie();">
-		<option value="">::박스오피스 영화 순위::</option>
-</select>
+		<option>::박스오피스 영화 순위::</option>
+</select> -->
 
 
 
 
 
 <!--상영 지역-->
+<div>
+<h3>::지역 선택</h3>
 <select id="city_select" onchange="city();"><!-- 옵션을 바꿀 때마다 city() 메서드 실행 -->
-		<option value="">::지역 선택::</option>
+		
 </select>
+</div>
 
 
 <!--각 지역별 상영관-->
 <select id="district_select" onchange="district();"><!-- 옵션을 바꿀 때마다 district() 메서드 실행 -->
-		<option value="">::상세 지역 선택::</option>
+		<option>::상세 지역 선택::</option>
 </select>
 
 
@@ -540,14 +526,14 @@ window.onload=function(){
 
 <!--날자 출력  -->
 <select id="date_select" onchange="date();"><!-- 옵션을 바꿀 때마다date 메서드 실행 -->
-		<option value="">::상영 날짜 선택::</option>
+		<option>::상영 날짜 선택::</option>
 </select>
 
 
 
 <!--상영시간 출력  -->
 <select id="time_select" onchange="time();"><!-- 옵션을 바꿀 때마다time 메서드 실행 -->
-		<option value="">::상영 시간 선택::</option>
+		<option>::상영 시간 선택::</option>
 </select>
 
 <hr>
