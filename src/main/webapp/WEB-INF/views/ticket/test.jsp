@@ -54,23 +54,26 @@ window.onload=function(){
 </head>
 <body>
 
-
-
 <div>
+	<h3>영화</h3>
+</div>
+<div>
+
+
 <!--영화 출력  -->
-		<h3>영화</h3>
-		<div id="movie_select" style="overflow:scroll; width:185px; height:200px;">
+		
+		<div id="movie_select" style="overflow:scroll; width:185px; height:200px;float:left;">
 			
 		</div>
 	
 
-		<h3>지역</h3>
-		<div>
-			<div id="city_select" style="overflow:scroll; width:185px; height:200px;">
+		
+		<div style="float:left;">
+			<div id="city_select" style="overflow:scroll; width:185px; height:200px;float:left;">
 				
 			</div>
 			
-			<div id="district_select" style="overflow:scroll; width:185px; height:200px;">
+			<div id="district_select" style="overflow:scroll; width:185px; height:200px;float:left;">
 			
 			</div>
 		</div>
@@ -78,17 +81,18 @@ window.onload=function(){
 
 
 <!--날자 출력  -->
-		<h3>날짜</h3>
-		<div id="date_select" style="overflow:scroll; width:185px; height:200px;">
-			
-		</div>
+		
+		<div style="float:left;">
+			<div id="date_select" style="overflow:scroll; width:185px; height:200px;float:left;">
+				
+			</div>
 
 <!--상영시간 출력  -->
-		<div id="time_select" style="overflow:scroll; width:185px; height:200px;">
-			
+			<div id="time_select" style="overflow:scroll; width:185px; height:200px;float:left;">
+				
+			</div>
 		</div>
 
-<hr>
 <!-- 예매 정보 한번에 보기 -->
 <form  action="ticketform.do" method="get">
 	<input name="m_name" id="m_name" readonly>
