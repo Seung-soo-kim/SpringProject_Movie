@@ -27,12 +27,12 @@ public class TheaterDAO {
 	
 	//구 검색
 	public List<TheaterVO> selectDistrict(String m_name , String city){
-		
 		HashMap<String , Object> map = new HashMap<String, Object>();
 		map.put("m_name",m_name);
 		map.put("city",city);
-		
+		System.out.println(city);
 		List<TheaterVO> list = sqlSession.selectList("t.selectdistrict" ,map );
+		System.out.println(list.get(0).getDistrict());
 		return list;
 		
 	}

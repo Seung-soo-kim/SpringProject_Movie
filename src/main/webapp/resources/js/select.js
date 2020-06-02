@@ -1,25 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-
-<head>
-<meta charset="UTF-8">
-<title>순위</title>
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
-<style type="text/css">
-	select{width: 170px;}
-	option{align-content: content }
-</style>
-<script type="text/javascript">
-
-window.onload=function(){
-    load_list();
- };
- 
- //영화 목록을 API로 가져오는 함수
- function load_list(){
+﻿function load_list(){
 	// 조회할 날짜를 계산
 	var dt = new Date();
 	//하루전 날짜 
@@ -50,7 +29,7 @@ window.onload=function(){
     //192.168.1.101:9090/vs/list.do
     var url ='http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json';
     //하루전 박스오피스순으로 출력(10위 까지만)
-    var param = 'key=a7c6bfb2e16d4d1ae14730f90bc6726a&targetDt='+result+'&itemPerPage=10';
+    var param = 'key=a7c6bfb2e16d4d1ae14730f90bc6726a&targetDt='+result+'&itemPerPage=20';
     sendRequest( url, param, resultFn, "GET" );
     
  }
@@ -61,18 +40,23 @@ window.onload=function(){
        
        var data = xhr.responseText;
        var json=eval("[" + data + "]");
-     
+     	
        //id가 movie_select인 태그를 가져온다
        var movie_select =document.getElementById("movie_select")
        
       for(var i=0 ; i<json[0].boxOfficeResult.weeklyBoxOfficeList.length ; i++){
-    	  
-    	  var option = document.createElement("option");
-    	  option.innerHTML =json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;//영화목록
-    	  option.value=json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;	
-			
-		  movie_select.appendChild(option);
-    	  
+    	  var div = document.createElement("div");
+    	  var input = document.createElement("input");
+    	  input.type="button";
+    	  input.classList = "st";
+    	  input.style.width="170px";
+    	  input.innerHTML =json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;//영화목록
+    	  input.value=json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;	
+    	 input.onclick=function(e){
+    		 movie(e.target.value);
+    	 }
+		  div.appendChild(input);
+		  movie_select.appendChild(div);
     	  
       }
        
@@ -80,15 +64,13 @@ window.onload=function(){
     }  
     
  }
- 
- 	//---------------------------------------------------------------------
- 
- 
-	//영화 클릭시 실행되는 메서드
-	function movie() {
+ //--------------------------------------------------------
+
+//영화 클릭시 실행되는 메서드
+	function movie(movieNm) {
  		
 		//영화이름 저장
-		var movieNm = document.getElementById("movie_select").value;
+		//var movieNm = document.getElementById("movie_select").value;
 		if(movieNm==''){
 			document.getElementById("m_name").value='';
 			document.getElementById("m_name").innerHTML='';
@@ -100,37 +82,29 @@ window.onload=function(){
 		
 		//영화 재 선택시 아래항목 리셋		
 		var district_select = document.getElementById("district_select");
+		var time_select = document.getElementById("time_select");
 		var date_select = document.getElementById("date_select");
 		var city_select =document.getElementById("city_select");
-		if(city_select.options.length >1){
-	    
-		    for(var i=1; i<city_select.options.length; i++) {
-		    	city_select.options[i] = null;
-		    	city_select.options.length = 1;
-		    }
-		}
-		if(district_select.options.length >1){
-		    
-		    for(var i=1; i<district_select.options.length; i++) {
-		    	district_select.options[i] = null;
-		    	district_select.options.length = 1;
-		    }
-		}
-		if(date_select.options.length >1){
-		    
-		    for(var i=1; i<date_select.options.length; i++) {
-		    	date_select.options[i] = null;
-		    	date_select.options.length = 1;
-		    }
-		}
-		var time_select = document.getElementById("time_select");
-		if(time_select.options.length >1){
-		    
-		    for(var i=1; i<time_select.options.length; i++) {
-		    	time_select.options[i] = null;
-		    	time_select.options.length = 1;
-		    }
-		}
+		 if(city_select.childElementCount>0){
+			 while ( city_select.hasChildNodes() ){ 
+				 city_select.removeChild( city_select.firstChild ); 
+				 }
+		} 
+		 if(district_select.childElementCount>0){
+			 while ( district_select.hasChildNodes() ){ 
+				 district_select.removeChild( district_select.firstChild ); 
+				 }
+		} 
+		 if(date_select.childElementCount>0){
+			 while ( date_select.hasChildNodes() ){ 
+				 date_select.removeChild( date_select.firstChild ); 
+				 }
+		} 
+		 if(time_select.childElementCount>0){
+			 while ( time_select.hasChildNodes() ){ 
+				 time_select.removeChild( time_select.firstChild ); 
+				 }
+		} 
 		//영화 재선택시 ticket에 저장된 영화제목 이외의 항목 제거 
 	    document.getElementById("city").value="";
 	    document.getElementById("city").innerHTML="";
@@ -158,10 +132,18 @@ window.onload=function(){
 			var city_select =document.getElementById("city_select")
 			
 			for(var i=0 ; i<json.length; i++){
-				var option = document.createElement("option");
-				option.innerHTML=json[i].city;
-				option.value=json[i].city;
-				city_select.appendChild(option);
+				var div = document.createElement("div");
+		    	var input = document.createElement("input");
+		    	input.type="button";
+		    	input.style.width="170px";
+		    	input.classList = "st";
+				input.innerHTML=json[i].city;
+				input.value=json[i].city;
+				input.onclick=function(e){
+		    		city(e.target.value);
+		    	 }
+				  div.appendChild(input);
+				  city_select.appendChild(div);
 			}
 		}
 	}
@@ -169,10 +151,10 @@ window.onload=function(){
 	//----------------------------------------------------------------------------
 	
 	//지역 선택시 실행되는 메서드
-	function city() {
+	function city(city) {
 		
-		var movieNm = document.getElementById("movie_select").value;
-		var city= document.getElementById("city_select").value;
+		var movieNm = document.getElementById("m_name").value;
+		//var city= document.getElementById("city_select").value;
 		if(city==''){
 			document.getElementById("city").value=city;
 			document.getElementById("city").innerHTML=city;	
@@ -192,36 +174,32 @@ window.onload=function(){
 	    document.getElementById("date").innerHTML="";
 	    document.getElementById("time").value="";
 	    document.getElementById("time").innerHTML="";
-		//지역 재선택시 아래 항목 초기화
-		var district_select = document.getElementById("district_select");
-		var date_select = document.getElementById("date_select");
-		if(district_select.options.length >1){
-		    
-		    for(var i=1; i<district_select.options.length; i++) {
-		    	district_select.options[i] = null;
-		    	district_select.options.length = 1;
-		    }
-		}
-		if(date_select.options.length >1){
-		    
-		    for(var i=1; i<date_select.options.length; i++) {
-		    	date_select.options[i] = null;
-		    	date_select.options.length = 1;
-		    }
-		}
+	    
+	    
+	    var district_select = document.getElementById("district_select");
 		var time_select = document.getElementById("time_select");
-		if(time_select.options.length >1){
-		    
-		    for(var i=1; i<time_select.options.length; i++) {
-		    	time_select.options[i] = null;
-		    	time_select.options.length = 1;
-		    }
-		}
+		var date_select = document.getElementById("date_select");
 		
+		 if(district_select.childElementCount>0){
+			 while ( district_select.hasChildNodes() ){ 
+				 district_select.removeChild( district_select.firstChild ); 
+				 }
+		} 
+		 if(date_select.childElementCount>0){
+			 while ( date_select.hasChildNodes() ){ 
+				 date_select.removeChild( date_select.firstChild ); 
+				 }
+		} 
+		 if(time_select.childElementCount>0){
+			 while ( time_select.hasChildNodes() ){ 
+				 time_select.removeChild( time_select.firstChild ); 
+				 }
+		}
 		
 		//각 영화가 상영하는 지역의 상영관을 DB에서 가져와 출력
 		
 		var url="districtlist.do"
+	
 		var param="m_name="+movieNm+"&city="+city;
 		sendRequest( url, param, resultFn3, "GET" );
 	}//city
@@ -230,15 +208,22 @@ window.onload=function(){
 		if( xhr.readyState == 4 && xhr.status == 200 ){
 			var data = xhr.responseText;
 			var json = eval(data);
-			//alert(data);
+			
 			var district_select = document.getElementById("district_select");
 			
 			for(var i=0 ; i<json.length;i++){
+				var div = document.createElement("div");
+		    	var input = document.createElement("input");
+		    	input.type="button";
+		    	input.style.width="170px";
+		    	input.innerHTML=json[i].district;
+		    	input.value=json[i].district;
 				
-				var option = document.createElement("option");
-				option.innerHTML=json[i].district;
-				option.value=json[i].district;
-				district_select.appendChild(option);
+				input.onclick=function(e){
+					district(e.target.value);
+		    	 }
+				  div.appendChild(input);
+				  district_select.appendChild(div);
 			}
 		}
 	}//resultFn3
@@ -246,10 +231,10 @@ window.onload=function(){
 	//------------------------------------------------------------------------
 	
 	//상영구? 선택시 실행
-	function district() {
-		var movieNm = document.getElementById("movie_select").value;
-		var city= document.getElementById("city_select").value;
-		var district= document.getElementById("district_select").value;
+	function district(district) {
+		var movieNm = document.getElementById("m_name").value;
+		var city= document.getElementById("city").value;
+		
 		
 		//
 		if(district==''){
@@ -266,19 +251,16 @@ window.onload=function(){
 		//상영관 재선택시 아래 항목 초기화
 		var date_select = document.getElementById("date_select");
 		var time_select = document.getElementById("time_select");
-		if(date_select.options.length >1){
-		    
-		    for(var i=1; i<date_select.options.length; i++) {
-		    	date_select.options[i] = null;
-		    	date_select.options.length = 1;
-		    }
-		}
-		if(time_select.options.length >1){
-		    
-		    for(var i=1; i<time_select.options.length; i++) {
-		    	time_select.options[i] = null;
-		    	time_select.options.length = 1;
-		    }
+		
+		 if(date_select.childElementCount>0){
+			 while ( date_select.hasChildNodes() ){ 
+				 date_select.removeChild( date_select.firstChild ); 
+				 }
+		} 
+		 if(time_select.childElementCount>0){
+			 while ( time_select.hasChildNodes() ){ 
+				 time_select.removeChild( time_select.firstChild ); 
+				 }
 		}
 		//
 		document.getElementById("date").value="";
@@ -297,6 +279,7 @@ window.onload=function(){
 		if( xhr.readyState == 4 && xhr.status == 200 ){
 			var data = xhr.responseText;
 			var json = eval(data);
+			
 			//[{"max_month":"06","max_date":"04","min_month":"05","min_date":"28" , 'date_o':'2' , 'day':'목요일'}]
 			
 			//상영시작과 끝의 날자 수
@@ -327,7 +310,7 @@ window.onload=function(){
 			}
 			
 			//현재 요일 출력
-			//var day=arrayDayStr[day_int];
+			
 			//년
 			var y = dt.getFullYear();
 			var year=y+'';
@@ -337,11 +320,12 @@ window.onload=function(){
 				
 				//사영날짜부터 사영종료 날짜까지 option태그 추가
 				for(var j=0 ; j <date_o+1 ;j++){
-					
-					var option = document.createElement("option");
-					//var date=d+"";
-					
-					option.innerHTML=month+'월 '+ d + '일 ' + day ;
+					var div = document.createElement("div");
+			    	var input = document.createElement("input");
+			    	input.type="button";
+			    	input.style.width="170px";
+			    	
+					input.value=month+'월 '+ d + '일 ' + day ;
 					
 					//날짜를 date형식으로 변환
 					if(month <10){
@@ -352,10 +336,12 @@ window.onload=function(){
 					}else{
 						var da = d+"";
 					}
-					option.value=mt+""+da+""+year;
-					
-					
-					date_select.appendChild(option);
+					input.name=mt+""+da+""+year;
+					input.onclick=function(e){
+						date(e.target.name);
+			    	 }
+					div.appendChild(input);
+					date_select.appendChild(div);
 					d++;
 					if(month=='1' ||month=='3' ||month=='5'||month=='7'||month=='8'||month=='10'||month=='12'){
 						if(d>31){
@@ -394,11 +380,11 @@ window.onload=function(){
 	//------------------------------------------------------------------------------	
 		
 	//상영 날짜 클릭시 실행
-	function date() {
-		var movieNm = document.getElementById("movie_select").value;
-		var city= document.getElementById("city_select").value;
-		var district= document.getElementById("district_select").value;
-		var date= document.getElementById("date_select").value;
+	function date(date) {
+		var movieNm = document.getElementById("m_name").value;
+		var city= document.getElementById("city").value;
+		var district= document.getElementById("district").value;
+		
 		
 		if(date==''){
 			document.getElementById("date").value=date;
@@ -414,15 +400,14 @@ window.onload=function(){
 		document.getElementById("time").value="";
 	    document.getElementById("time").innerHTML="";
 	    
-	    var time_select = document.getElementById("time_select");
-		if(time_select.options.length >1){
-		    
-		    for(var i=1; i<time_select.options.length; i++) {
-		    	time_select.options[i] = null;
-		    	time_select.options.length = 1;
-		    }
+	   
+		var time_select = document.getElementById("time_select");
+		
+		 if(time_select.childElementCount>0){
+			 while ( time_select.hasChildNodes() ){ 
+				 time_select.removeChild( time_select.firstChild ); 
+				 }
 		}
-	    
 	    
 		var date_s=date+"";
 		var url="timelist.do";
@@ -435,16 +420,24 @@ window.onload=function(){
 		if( xhr.readyState == 4 && xhr.status == 200 ){
 			var data = xhr.responseText;
 			var json = eval(data);
-		
+			alert(data);
 			
 			var time_select = document.getElementById("time_select");
 			for(var i=0 ; i<json.length;i++){
+				var div = document.createElement("div");
+		    	var input = document.createElement("input");
+		    	input.type="button";
+		    	input.style.width="170px";
 				
-				var option = document.createElement("option");
-				option.innerHTML=json[i].time.substring(11,13)+"시"+ json[i].time.substring(14,16)+"분";
+		    	input.value=json[i].time.substring(11,13)+"시"+ json[i].time.substring(14,16)+"분";
 				
-				option.value=json[i].time;
-				time_select.appendChild(option);
+		    	input.name=json[i].time;
+		    	input.onclick=function(e){
+		    		
+					time(e.target.name);
+		    	 }
+		    	div.appendChild(input);
+				time_select.appendChild(div);
 			}
 		}
 	} //resultFn5
@@ -453,8 +446,8 @@ window.onload=function(){
 	//------------------------------------------------------------------------
 	
 	//시간 선택시 실행되는 메서드
-	function time() {
-		var time = document.getElementById("time_select").value;
+	function time(time) {
+		
 		if(time==''){
 			document.getElementById("time").value=time;
 			document.getElementById("time").innerHTML=time;
@@ -501,66 +494,8 @@ window.onload=function(){
 		
 		
 	}
-	
-	
-</script>
-
-<style type="text/css">
-
-</style>
-</head>
-<body>
-
-
-
-<div>
-
-<!-- 영화목록 -->
-<select id="movie_select" onchange="movie();">
-		<option value="">::박스오피스 영화 순위::</option>
-</select>
 
 
 
 
 
-<!--상영 지역-->
-<select id="city_select" onchange="city();"><!-- 옵션을 바꿀 때마다 city() 메서드 실행 -->
-		<option value="">::지역 선택::</option>
-</select>
-
-
-<!--각 지역별 상영관-->
-<select id="district_select" onchange="district();"><!-- 옵션을 바꿀 때마다 district() 메서드 실행 -->
-		<option value="">::상세 지역 선택::</option>
-</select>
-
-
-
-
-<!--날자 출력  -->
-<select id="date_select" onchange="date();"><!-- 옵션을 바꿀 때마다date 메서드 실행 -->
-		<option value="">::상영 날짜 선택::</option>
-</select>
-
-
-
-<!--상영시간 출력  -->
-<select id="time_select" onchange="time();"><!-- 옵션을 바꿀 때마다time 메서드 실행 -->
-		<option value="">::상영 시간 선택::</option>
-</select>
-
-<hr>
-<!-- 예매 정보 한번에 보기 -->
-<form  action="ticketform.do" method="get">
-	<input name="m_name" id="m_name" readonly>
-	<input name="city" id="city" readonly>
-	<input name="district" id="district" readonly>
-	<input type="hidden" name="date_s" id="date" readonly>
-	<input name="time" id="time" readonly>
-	<input type="button" value="좌석 선택하기" onclick="send(this.form);">
-	
-</form>
-</div>
-</body>
-</html>

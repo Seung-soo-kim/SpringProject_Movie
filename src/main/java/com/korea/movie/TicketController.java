@@ -38,7 +38,7 @@ public class TicketController {
 	//합칠때 지워도댐 
 	@RequestMapping("/")
 	public String test() {
-		return "WEB-INF/views/ticket/ticket_form.jsp";
+		return "WEB-INF/views/ticket/test.jsp";
 	}
 	
 	//해당 영화가 상영하는 지역 선택 
