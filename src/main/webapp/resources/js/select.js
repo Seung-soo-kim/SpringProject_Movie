@@ -216,6 +216,7 @@
 		    	var input = document.createElement("input");
 		    	input.type="button";
 		    	input.style.width="170px";
+		    	input.classList = "st";
 		    	input.innerHTML=json[i].district;
 		    	input.value=json[i].district;
 				
@@ -324,7 +325,7 @@
 			    	var input = document.createElement("input");
 			    	input.type="button";
 			    	input.style.width="170px";
-			    	
+			    	input.classList = "st";
 					input.value=month+'월 '+ d + '일 ' + day ;
 					
 					//날짜를 date형식으로 변환
@@ -428,7 +429,7 @@
 		    	var input = document.createElement("input");
 		    	input.type="button";
 		    	input.style.width="170px";
-				
+		    	input.classList = "st";
 		    	input.value=json[i].time.substring(11,13)+"시"+ json[i].time.substring(14,16)+"분";
 				
 		    	input.name=json[i].time;
