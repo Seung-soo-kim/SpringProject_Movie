@@ -10,14 +10,15 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/select.js"></script>
 <style type="text/css">
-	.st{width:100px;
+*{margin: 0; padding: 0;}
+	.st{width:90px;
 
-    background-color: #f8585b;
+    background-color: #F4F1E5;
 
     border: none;
 
-    color:#fff;
-
+    color:#4E4D49;
+	굴림;
     padding: 15px 0;
 
     text-align: center;
@@ -26,20 +27,25 @@
 
     display: inline-block;
 
-    font-size: 15px;
-
+    font-size: 10px;
+	
+	font-weight:normal;
+	
     margin: 4px;
 
     cursor: pointer;
+
+}
+
+ input:hover {
+    background-color:#393836;
+    color:#F4F1E5;
     
-	border-radius:10px;
-
 }
-.st:hover {
-    background-color: blue;
+body{
+	background-color: #F2E8C4;
 }
 
-출처: https://nimolove.tistory.com/44 [Chaeni_vlog 🌈]
 </style>
 <script type="text/javascript">
 
@@ -55,26 +61,33 @@ window.onload=function(){
 <body>
 
 <div>
-	<h3>영화</h3>
+<table>
+</table>
 </div>
-<div>
+<div style="width:1200px ;margin:0 auto ;border:1px solid ;overflow: hidden;" align="center">
+<!--border지워도댐  -->
 
 
 <!--영화 출력  -->
-		
-		<div id="movie_select" style="overflow:scroll; width:185px; height:200px;float:left;">
+		<div style="float:left;margin: 4px;">
+			<div style="background-color:gray ; margin:0"><h3 style="color:#F0F6E8">영화</h3></div>
+			<div class="movie_select" id="movie_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;background-color:#F4F1E5">
 			
+			</div>
 		</div>
 	
 
 		
-		<div style="float:left;">
-			<div id="city_select" style="overflow:scroll; width:185px; height:200px;float:left;">
+		<div style="margin: 4px;float:left;">
+			<div style="background-color:gray ; margin:0"><h3 style="color:#F0F6E8">극장</h3></div>
+			<div>
+			<div id="city_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;float:left;background-color:#F4F1E5">
 				
 			</div>
 			
-			<div id="district_select" style="overflow:scroll; width:185px; height:200px;float:left;">
+			<div id="district_select" style="overflow:scroll; overflow-x:hidden;width:190px; height:200px;float:left;background-color:#F4F1E5">
 			
+			</div>
 			</div>
 		</div>
 	
@@ -82,27 +95,47 @@ window.onload=function(){
 
 <!--날자 출력  -->
 		
-		<div style="float:left;">
-			<div id="date_select" style="overflow:scroll; width:185px; height:200px;float:left;">
+		<div style="margin: 4px;float:left;">
+			<div style="background-color:gray ; margin:0"><h3 style="color:#F0F6E8">날짜</h3></div>
+			<div>
+				<div id="date_select" style="overflow:scroll; overflow-x:hidden;width:190px; height:200px;float:left;background-color:#F4F1E5">
 				
-			</div>
+				</div>
 
 <!--상영시간 출력  -->
-			<div id="time_select" style="overflow:scroll; width:185px; height:200px;float:left;">
+				<div id="time_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;float:left;background-color:#F4F1E5">
 				
+				</div>
 			</div>
 		</div>
 
 <!-- 예매 정보 한번에 보기 -->
+<div style="margin: 4px;float:left;">
+<div style="background-color:gray ; margin:0"><h3 style="color:#F0F6E8">예매 정보</h3></div>
 <form  action="ticketform.do" method="get">
-	<input name="m_name" id="m_name" readonly>
-	<input name="city" id="city" readonly>
-	<input name="district" id="district" readonly>
-	<input type="hidden" name="date_s" id="date" readonly>
-	<input name="time" id="time" readonly>
+
+	<table style="background-color:#F4F1E5" >
+	<tr>
+		<td><input name="m_name" id="m_name" readonly style="border:none"></td>
+	</tr>
+	<tr>
+		<td><input name="city" id="city" readonly style="border:none"></td>
+	</tr>
+	<tr>
+		<td><input name="district" id="district" readonly style="border:none"></td>
+	</tr>
+	<tr>
+		<td><input name="time" id="time" readonly style="border:none"></td>
+	</tr>
+	
+	</table>
 	<input type="button" value="좌석 선택하기" onclick="send(this.form);">
+	<input type="hidden" name="date_s" id="date" readonly style="border:none">
+	
 	
 </form>
+</div>
+
 </div>
 </body>
 </html>

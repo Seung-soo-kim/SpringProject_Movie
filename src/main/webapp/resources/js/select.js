@@ -50,10 +50,10 @@
     	  input.type="button";
     	  input.classList = "st";
     	  input.style.width="170px";
-    	  input.innerHTML =json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;//영화목록
-    	  input.value=json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;	
+    	  input.id=json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;
+    	  input.value=json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;//영화 이름
     	 input.onclick=function(e){
-    		 movie(e.target.value);
+    		 movie(e.target.value, e.target);
     	 }
 		  div.appendChild(input);
 		  movie_select.appendChild(div);
@@ -67,8 +67,8 @@
  //--------------------------------------------------------
 
 //영화 클릭시 실행되는 메서드
-	function movie(movieNm) {
- 		
+ var m_id='';
+	function movie(movieNm, id) {
 		//영화이름 저장
 		//var movieNm = document.getElementById("movie_select").value;
 		if(movieNm==''){
@@ -79,6 +79,16 @@
 		}
 		document.getElementById("m_name").value=movieNm;
 		document.getElementById("m_name").innerHTML=movieNm;
+		
+		
+		//해당 영화 버튼 클릭시 색깔 바뀌게 
+		if(m_id != ''){
+		m_id.style.fontSize=10+'px';
+		m_id.style.fontWeight="normal";
+		}
+		id.style.fontWeight="bold";
+		id.style.fontSize=15+'px';
+		m_id=id;
 		
 		//영화 재 선택시 아래항목 리셋		
 		var district_select = document.getElementById("district_select");
@@ -140,7 +150,8 @@
 				input.innerHTML=json[i].city;
 				input.value=json[i].city;
 				input.onclick=function(e){
-		    		city(e.target.value);
+		    		city(e.target.value,e.target);
+		   
 		    	 }
 				  div.appendChild(input);
 				  city_select.appendChild(div);
@@ -149,9 +160,9 @@
 	}
 	
 	//----------------------------------------------------------------------------
-	
+	var c_id='';
 	//지역 선택시 실행되는 메서드
-	function city(city) {
+	function city(city, id) {
 		
 		var movieNm = document.getElementById("m_name").value;
 		//var city= document.getElementById("city_select").value;
@@ -161,7 +172,14 @@
 			alert("지역을 선택하세요");
 			return;
 		}
-		
+		//해당 영화 버튼 클릭시 색깔 바뀌게 
+		if(c_id != ''){
+		c_id.style.fontSize=10+'px';
+		c_id.style.fontWeight="normal";
+		}
+		id.style.fontWeight="bold";
+		id.style.fontSize=15+'px';
+		c_id=id;
 		
 		//ticket에 아래 내용 저장
 		document.getElementById("city").value=city;
@@ -221,7 +239,8 @@
 		    	input.value=json[i].district;
 				
 				input.onclick=function(e){
-					district(e.target.value);
+					district(e.target.value, e.target);
+					
 		    	 }
 				  div.appendChild(input);
 				  district_select.appendChild(div);
@@ -230,9 +249,9 @@
 	}//resultFn3
 	
 	//------------------------------------------------------------------------
-	
+	var d_id='';
 	//상영구? 선택시 실행
-	function district(district) {
+	function district(district,id) {
 		var movieNm = document.getElementById("m_name").value;
 		var city= document.getElementById("city").value;
 		
@@ -244,6 +263,15 @@
 			alert("지역을 선택하세요");
 			return;
 		}
+		
+		//해당 영화 버튼 클릭시 색깔 바뀌게 
+		if(d_id != ''){
+			d_id.style.fontSize=10+'px';
+			d_id.style.fontWeight="normal";
+		}
+		id.style.fontWeight="bold";
+		id.style.fontSize=15+'px';
+		d_id=id;
 		
 		//ticket에 아래 항목 저장
 		document.getElementById("district").value=district;
@@ -339,7 +367,8 @@
 					}
 					input.name=mt+""+da+""+year;
 					input.onclick=function(e){
-						date(e.target.name);
+						date(e.target.name , e.target);
+						
 			    	 }
 					div.appendChild(input);
 					date_select.appendChild(div);
@@ -379,9 +408,9 @@
 	}//resultFn4()
 	
 	//------------------------------------------------------------------------------	
-		
+	var D_id='';
 	//상영 날짜 클릭시 실행
-	function date(date) {
+	function date(date ,id) {
 		var movieNm = document.getElementById("m_name").value;
 		var city= document.getElementById("city").value;
 		var district= document.getElementById("district").value;
@@ -393,6 +422,15 @@
 			alert("상세지역을 선택하세요");
 			return;
 		}
+		
+		//해당 영화 버튼 클릭시 색깔 바뀌게 
+		if(D_id != ''){
+			D_id.style.fontSize=10+'px';
+			D_id.style.fontWeight="normal";
+		}
+		id.style.fontWeight="bold";
+		id.style.fontSize=15+'px';
+		D_id=id;
 		
 		document.getElementById("date").value=date;
 		document.getElementById("date").innerHTML=date;
@@ -421,7 +459,7 @@
 		if( xhr.readyState == 4 && xhr.status == 200 ){
 			var data = xhr.responseText;
 			var json = eval(data);
-			alert(data);
+			
 			
 			var time_select = document.getElementById("time_select");
 			for(var i=0 ; i<json.length;i++){
@@ -435,7 +473,8 @@
 		    	input.name=json[i].time;
 		    	input.onclick=function(e){
 		    		
-					time(e.target.name);
+					time(e.target.name , e.target);
+				
 		    	 }
 		    	div.appendChild(input);
 				time_select.appendChild(div);
@@ -445,9 +484,9 @@
 	
 	
 	//------------------------------------------------------------------------
-	
+	var t_id='';
 	//시간 선택시 실행되는 메서드
-	function time(time) {
+	function time(time, id) {
 		
 		if(time==''){
 			document.getElementById("time").value=time;
@@ -455,6 +494,14 @@
 			alert("상영시간을 선택하세요");
 			return;
 		}
+		//해당 영화 버튼 클릭시 색깔 바뀌게 
+		if(t_id != ''){
+			t_id.style.fontSize=10+'px';
+			t_id.style.fontWeight="normal";
+		}
+		id.style.fontWeight="bold";
+		id.style.fontSize=15+'px';
+		t_id=id;
 		
 		document.getElementById("time").value=time;
 		document.getElementById("time").innerHTML=time;
