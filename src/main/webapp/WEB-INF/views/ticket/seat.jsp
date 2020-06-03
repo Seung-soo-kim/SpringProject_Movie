@@ -9,11 +9,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+	*{margin: 0; padding: 0;}
 .seat {
             width: 45px;
             height: 45px;
         }
-
+body{
+	background-color: #F2E8C4;
+}
 </style>
 <script type="text/javascript"  src="${pageContext.request.contextPath }/resources/js/count.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
@@ -56,7 +59,7 @@ window.onload=function(){
 		<tr>
 			<td>어른</td>
 			<c:forEach var="j" begin="0" end="2" step="1">
-				<td><input type="button" value="${j}" name="${j}" onclick="count1('${j}');"></td>
+				<td><input type="button" value="${j}" name="${j}" onclick="count1('${j}');" style="width: 20px;height: 20px;"></td>
 			</c:forEach>
 			<td id="ad">0</td>
 			<td>명</td>
@@ -64,7 +67,7 @@ window.onload=function(){
 		<tr>
 			<td>청소년</td>
 			<c:forEach var="j" begin="0" end="2" step="1">
-				<td><input type="button" value="${j}" name="${j}" onclick="count2('${j}');"></td>
+				<td><input type="button" value="${j}" name="${j}" onclick="count2('${j}');" style="width: 20px;height: 20px;"></td>
 			</c:forEach>
 			<td id="te">0</td>
 			<td>명</td>
@@ -72,7 +75,7 @@ window.onload=function(){
 		<tr>
 			<td>어린이</td>
 			<c:forEach var="j" begin="0" end="2" step="1">
-				<td><input type="button" value="${j}" name="${j}" onclick="count3('${j}');"></td>
+				<td><input type="button" value="${j}" name="${j}" onclick="count3('${j}');" style="width: 20px;height: 20px;"></td>
 			</c:forEach>
 			<td id="ch">0</td>
 			<td>명</td>
@@ -92,17 +95,29 @@ window.onload=function(){
    
 </div>
 
-<hr>
-   <h1 align="center">::SCREEN::</h1>
+
 <hr>
    
 
-<div >
+<div style="width:600px;height:400px ;margin:0 auto ;border:1px solid ;overflow: hidden; background-color:#424242 " align="center"  >
+<div style="margin-bottom: 15px">
+<h1 align="center" style="color:#A4A4A4">::SCREEN::</h1>
+</div>
    <c:forEach var="i" items="A열,B열,C열,D열,E열,F열,G열">
       <div>
-         <c:forEach var="j" begin="1" end="7" step="1">
+         <c:forEach var="j" begin="1" end="8" step="1">
+         		<c:if test="${j eq 2 }">
                <input name="${i}${j}" type="button" id="${i}${j}"
-               value="${i}${j}" class="seat" onclick="seat('${i}${j}');">
+               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="margin-right:15px ;margin-left:0px">
+        		</c:if>
+         		<c:if test="${j eq 7 }">
+               <input name="${i}${j}" type="button" id="${i}${j}"
+               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="margin-left:15px">
+         		</c:if>
+         		<c:if test="${j ne 7 and j ne 2 }">
+         		<input name="${i}${j}" type="button" id="${i}${j}"
+               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="margin-left:0px">
+         		</c:if>
          </c:forEach>
       </div>
    </c:forEach>

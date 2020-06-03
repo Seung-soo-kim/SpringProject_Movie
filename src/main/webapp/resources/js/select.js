@@ -2,7 +2,7 @@
 	// 조회할 날짜를 계산
 	var dt = new Date();
 	//하루전 날짜 
-	dt.setTime(new Date().getTime() - (2 * 24 * 60 * 60 * 1000));
+	dt.setTime(new Date().getTime() - (3 * 24 * 60 * 60 * 1000));
 	
     var m = dt.getMonth() + 1;
 	if (m < 10) {
@@ -512,28 +512,28 @@
 	//좌석선택 페이지로 넘어가기
 	function send( f ) {
 		//유효성 검사
-		var movieNm = document.getElementById("movie_select").value;
-		var city= document.getElementById("city_select").value;
-		var district= document.getElementById("district_select").value;
-		var date= document.getElementById("date_select").value
-		var time = document.getElementById("time_select").value;
-		if(movieNm=="::영화를 선택하세요::"){
+		var movieNm = document.getElementById("m_name").value;
+		var city= document.getElementById("city").value;
+		var district= document.getElementById("district").value;
+		var date= document.getElementById("date").value
+		var time = document.getElementById("time").value;
+		if(movieNm==""){
 			alert("영화를 선택하세요");
 			return;
 		}
-		if(city=="::지역을 선택하세요::"){
-			alert("지역을 선택하세요");
+		if(city==""){
+			alert("상영관을 선택하세요");
 			return;
 		}
-		if(district=="::지역을 선택하세요::"){
-			alert("지역을 선택하세요");
+		if(district==""){
+			alert("상영관을 선택하세요");
 			return;
 		}
-		if(date=="::날짜를 선택하세요::"){
+		if(date==""){
 			alert("날짜를 선택하세요");
 			return;
 		}
-		if(time=="::시간을 선택하세요::"){
+		if(time==""){
 			alert("시간을 선택하세요");
 			return;
 		}

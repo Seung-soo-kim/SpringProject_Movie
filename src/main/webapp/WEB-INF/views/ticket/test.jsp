@@ -46,6 +46,21 @@ body{
 	background-color: #F2E8C4;
 }
 
+/* //div스크롤바 꾸미기  */
+div::-webkit-scrollbar {
+    width: 8px;
+  }
+  div::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 8px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  div::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 8px;
+    box-shadow: inset 0px 0px 5px white;
+  }
 </style>
 <script type="text/javascript">
 
@@ -96,7 +111,7 @@ window.onload=function(){
 <!--날자 출력  -->
 		
 		<div style="margin: 4px;float:left;">
-			<div style="background-color:gray ; margin:0"><h3 style="color:#F0F6E8">날짜</h3></div>
+			<div style="background-color:gray ; margin:0"><h3 style="color:#F0F6E8">날짜 및 시간</h3></div>
 			<div>
 				<div id="date_select" style="overflow:scroll; overflow-x:hidden;width:190px; height:200px;float:left;background-color:#F4F1E5">
 				
