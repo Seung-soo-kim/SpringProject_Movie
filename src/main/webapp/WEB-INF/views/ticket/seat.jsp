@@ -17,13 +17,26 @@
 body{
 	background-color: #F2E8C4;
 }
+.a0{
+	background-color:gray;
+	color:white;
+}
+.t0{
+	background-color:gray;
+	color:white;
+}
+.c0{
+	background-color:gray;
+	color:white;
+}
 </style>
 <script type="text/javascript"  src="${pageContext.request.contextPath }/resources/js/count.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 window.onload=function(){
 	already_seat();
-	
+	var time="";
+	alert(time);
 }	
 	//예약된 좌석 클릭못하게 막기
 	function already_seat() {
@@ -52,88 +65,94 @@ window.onload=function(){
 </head>
 <body>
 
-<div style="width:600px ;margin:0 auto ;overflow: hidden;background-color:gray; " align="center"><h3 style="color:#F0F6E8">인원/좌석</h3></div>
-<div  style="width:600px ;margin:0 auto ;overflow: hidden; " align="center">
-<div style="float:left">
-   <table>
-		<tr>
-			<td>어른</td>
-			<c:forEach var="j" begin="0" end="2" step="1">
-				<td><input type="button" value="${j}" name="${j}" onclick="count1('${j}');" style="width: 20px;height: 20px;"></td>
-			</c:forEach>
-			<td id="ad">0</td>
-			<td>명</td>
-		</tr>
-		<tr>
-			<td>청소년</td>
-			<c:forEach var="j" begin="0" end="2" step="1">
-				<td><input type="button" value="${j}" name="${j}" onclick="count2('${j}');" style="width: 20px;height: 20px;"></td>
-			</c:forEach>
-			<td id="te">0</td>
-			<td>명</td>
-		</tr>
-		<tr>
-			<td>어린이</td>
-			<c:forEach var="j" begin="0" end="2" step="1">
-				<td><input type="button" value="${j}" name="${j}" onclick="count3('${j}');" style="width: 20px;height: 20px;"></td>
-			</c:forEach>
-			<td id="ch">0</td>
-			<td>명</td>
-		</tr>
-		<tr>
-			<td>총</td>
-			<td id="to">0</td>
-			<td>명</td>
-		</tr>
-      	<tr>
-      		<td>합계</td>
-      		<td id="m_t" colspan="3" align="right"></td>
-      		<td>원</td>
-      	</tr>
-   </table>
+<div style="width:600px ;margin:0 auto ;overflow: hidden;background-color:gray; " align="center">
+	<h3 style="color:#F0F6E8">인원/좌석</h3>
+</div>
+<div  style="width:600px  ;margin:0 auto ;overflow: hidden; " align="center">
+	<div style="float:left;width:150px">
+	   <table>
+			<tr>
+				<td>어른</td>
+				<td>:</td>
+				<c:forEach var="j" begin="0" end="2" step="1">
+					<td><input class="a${j}" id="a${j}" type="button" value="${j}" name="${j}" onclick="count1('${j}');" style="border:none; width: 20px;height: 20px;"></td>
+				</c:forEach>
+				<input id="ad" type="hidden">
+			</tr>
+			<tr>
+				<td>청소년</td>
+				<td>:</td>
+				<c:forEach var="j" begin="0" end="2" step="1">
+					<td><input class="t${j}" id="t${j}" type="button" value="${j}" name="${j}" onclick="count2('${j}');" style="border:none; width: 20px;height: 20px;"></td>
+				</c:forEach>
+				<input id="te" type="hidden">
+			</tr>
+			<tr>
+				<td>우대</td>
+				<td>:</td>
+				<c:forEach var="j" begin="0" end="2" step="1">
+					<td><input class="c${j}" id="c${j}" type="button" value="${j}" name="${j}" onclick="count3('${j}');" style="border:none;width: 20px;height: 20px;"></td>
+				</c:forEach>
+				<input id="ch" type="hidden">
+			</tr>
+			<tr>
+				<td>총</td>
+				<td id="to" colspan="3" align="right">0</td>
+				<td>명</td>
+			</tr>
+	      	<tr>
+	      		<td>합계</td>
+	      		<td id="m_t" colspan="3" align="right">0</td>
+	      		<td>원</td>
+	      	</tr>
+	   </table>
    </div>
 
-
-	<form action="paymoney.do" method="get">
-		<div style="float:left; width:200px">
-			<p>선택된 좌석수 </p>
-			<input name="seat_count" id="seat_count" readonly style="border:none; background-color: #F2E8C4;" align="center">
-			<p>좌석 번호 </p>
+	
+	
+	<form action="paymoney.do" method="get" style="border-left:1px solid grey;height:119px ; overflow:hidden;">
+		<div style="float:left; width:250px; border-right: 1px solid grey ;height:119px ;">
+			<p style="font-weight: bold;font-size: 15px">선택된 좌석수 </p>
+			<div align="center" style="border-bottom: 1px solid grey">
+				<input name="seat_count" value=0 id="seat_count" readonly style="width:20px; border:none; background-color: #F2E8C4;" align="center">
+			</div>
+			
+			<p style="font-weight: bold;font-size: 15px">좌석 번호 </p>
 			<div id="set">
 			
 			</div>
-		
 		</div>
 		
-		<div style="float:left;">
-			<table>
-			<tr>
-				<td>
-				<input name="m_name" value="${sessionScope.vo.m_name}" readonly style="border:none; background-color: #F2E8C4;">
-				</td>
-			</tr>
-			<tr>
-				<td>
+		<div style="float:right;">
+			
+				<div align="left">
+				<input name="m_name" value="${sessionScope.vo.m_name}" readonly style="font-weight:bold ;border:none; background-color: #F2E8C4;">
+				</div>
+			
+				<div align="left">
 			 	<input name="city" value="${sessionScope.vo.city}" readonly style="width:25px;border:none ;background-color: #F2E8C4;">
 				<input name="district" value="${sessionScope.vo.district}" readonly style="width:30px;border:none; background-color: #F2E8C4;">
-				</td>
-			</tr>
-			<tr>	
-				<input name="time" value="${sessionScope.vo.time}" readonly style="border:none ;background-color: #F2E8C4;">
-			</tr>
-			<tr>
-				<td>
-				<input name="total_m" id="total_m" readonly style="border:none; background-color: #F2E8C4;">
-				</td>
-			</tr>
-			</table>
+				</div>
+				<div align="left">
+					${ sessionScope.vo.time}
+				</div>	
+			
+				<div align="left">
+				<input name="total_m" id="total_m" value=0 readonly style="text-align:right;;font-size:20px;width:60px;border:none; background-color: #F2E8C4;">
+				<b>원</b>
+				</div>
 				
-				<div>
+			
+			
+			
+				<div align="left">
 				<input type="button" value="결재하기" onclick="send(this.form);">
 				</div>
+				<input name="time" value="${sessionScope.vo.time}" type="hidden">
 				<input type="hidden" name="date_s" value="${sessionScope.vo.date_s}" readonly style="border:none ; background-color: #F2E8C4;">
 		</div>
 	</form>
+	
 </div>
   
 <div>
@@ -146,15 +165,15 @@ window.onload=function(){
          <c:forEach var="j" begin="1" end="8" step="1">
          		<c:if test="${j eq 2 }">
                <input name="${i}${j}" type="button" id="${i}${j}"
-               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="margin-right:15px ;margin-left:0px">
+               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="border:none;border-bottom:1px solid ;margin-right:15px ;margin-left:0px">
         		</c:if>
          		<c:if test="${j eq 7 }">
                <input name="${i}${j}" type="button" id="${i}${j}"
-               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="margin-left:15px">
+               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="border:none;margin-left:15px">
          		</c:if>
          		<c:if test="${j ne 7 and j ne 2 }">
          		<input name="${i}${j}" type="button" id="${i}${j}"
-               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="margin-left:0px">
+               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="border:none;margin-left:0px">
          		</c:if>
          </c:forEach>
       </div>

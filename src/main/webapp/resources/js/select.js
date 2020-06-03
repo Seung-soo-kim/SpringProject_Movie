@@ -459,7 +459,7 @@
 		if( xhr.readyState == 4 && xhr.status == 200 ){
 			var data = xhr.responseText;
 			var json = eval(data);
-			
+			alert(data);
 			
 			var time_select = document.getElementById("time_select");
 			for(var i=0 ; i<json.length;i++){
@@ -468,7 +468,7 @@
 		    	input.type="button";
 		    	input.style.width="170px";
 		    	input.classList = "st";
-		    	input.value=json[i].time.substring(11,13)+"시"+ json[i].time.substring(14,16)+"분";
+		    	input.value=json[i].time.substring(11,13)+"시"+ json[i].time.substring(14,16)+"분"+"("+json[i].seat_Total+"석)";
 				
 		    	input.name=json[i].time;
 		    	input.onclick=function(e){

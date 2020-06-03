@@ -74,7 +74,7 @@ window.onload=function(){
 </style>
 </head>
 <body>
-
+<%-- <jsp:include page="home.jsp"/> --%>
 <div>
 <table>
 </table>

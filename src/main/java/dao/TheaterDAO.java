@@ -57,12 +57,13 @@ public class TheaterDAO {
 		map.put("city",city);
 		map.put("district",district);
 		map.put("date_s",date_s);
-		
+		System.out.println(date_s);
 		//System.out.println("m_name : " + m_name);
 		//System.out.println("city : " + city);
 		//System.out.println("district : " +district);
 		
 		List<TheaterVO> list = sqlSession.selectList("t.selectTime",map);
+		System.out.println(list.get(0).getTime());
 		return list;
 	}
 	

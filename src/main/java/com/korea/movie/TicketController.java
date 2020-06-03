@@ -36,7 +36,7 @@ public class TicketController {
 	}
 	
 	//합칠때 지워도댐 
-	@RequestMapping("/")
+	@RequestMapping(value= {"/ticketing.do","/"})
 	public String test() {
 		return "WEB-INF/views/ticket/test.jsp";
 	}
@@ -140,7 +140,7 @@ public class TicketController {
 	@RequestMapping("/saveseat.do")
 	public String saveSeat(HttpSession session) { 
 		session.removeAttribute("vo");
-		return "WEB-INF/views/ticket/ticket_form.jsp";
+		return "WEB-INF/views/ticket/test.jsp";
 	}
 	
 	//예매된 좌석 조회하고 좌석 페이지에 전달하는 메서드 

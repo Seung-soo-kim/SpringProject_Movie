@@ -13,15 +13,29 @@
 	var m_total=0;//총합 요금
 	//어른 카운트 메서드
 	
-	
+	var ai="a0";
 	function count1(i) {
 		//인원 선택시 실행 되는 메서드
+		
 		i=i*1;
+		var input1 =document.getElementById(ai);
+		ai="a"+i;
+		
+		var input2 =document.getElementById(ai);
+		
+		input1.style.backgroundColor="white";
+		input1.style.color="black";
+		
+		input2.style.background="gray";
+		input2.style.color="white";
+		
 		if(i==0){
 			total-=a;
 			m_total-=a*a_m;
 			a=0;
 			m_total+=a*a_m;
+			
+			
 		}else if(i==1){
 			total-=a;
 			m_total-=a*a_m;
@@ -51,9 +65,20 @@
 	}
 	
 	//청소년 카운트 메서드
+	var ti="t0";
 	function count2(i) {
 		//인원 선택시 실행 되는 메서드
 		i=i*1;
+		var input1 =document.getElementById(ti);
+		ti="t"+i;
+		
+		var input2 =document.getElementById(ti);
+		
+		input1.style.backgroundColor="white";
+		input1.style.color="black";
+		
+		input2.style.background="gray";
+		input2.style.color="white";
 		if(i==0){
 			total-=t;
 			m_total-=t*t_m;
@@ -86,9 +111,20 @@
 	}
 	
 	//어린이 카운트 메서드
+	var ci="c0";
 	function count3(i) {
 		//인원 선택시 실행 되는 메서드
 		i=i*1;
+		var input1 =document.getElementById(ci);
+		ci="c"+i;
+		
+		var input2 =document.getElementById(ci);
+		
+		input1.style.backgroundColor="white";
+		input1.style.color="black";
+		
+		input2.style.background="gray";
+		input2.style.color="white";
 		if(i==0){
 			total-=c;
 			m_total-=c*c_m;
