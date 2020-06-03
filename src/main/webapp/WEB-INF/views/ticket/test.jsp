@@ -96,8 +96,8 @@ window.onload=function(){
 		<div style="margin: 4px;float:left;">
 			<div style="background-color:gray ; margin:0"><h3 style="color:#F0F6E8">극장</h3></div>
 			<div>
-			<div id="city_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;float:left;background-color:#F4F1E5">
 				
+			<div id="city_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;float:left;background-color:#F4F1E5">
 			</div>
 			
 			<div id="district_select" style="overflow:scroll; overflow-x:hidden;width:190px; height:200px;float:left;background-color:#F4F1E5">

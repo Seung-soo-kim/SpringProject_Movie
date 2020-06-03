@@ -51,10 +51,10 @@ window.onload=function(){
 </script>
 </head>
 <body>
-<div>
-	
-   <div>
-   	
+
+<div style="width:600px ;margin:0 auto ;overflow: hidden;background-color:gray; " align="center"><h3 style="color:#F0F6E8">인원/좌석</h3></div>
+<div  style="width:600px ;margin:0 auto ;overflow: hidden; " align="center">
+<div style="float:left">
    <table>
 		<tr>
 			<td>어른</td>
@@ -92,13 +92,51 @@ window.onload=function(){
       	</tr>
    </table>
    </div>
-   
+
+
+	<form action="paymoney.do" method="get">
+		<div style="float:left; width:200px">
+			<p>선택된 좌석수 </p>
+			<input name="seat_count" id="seat_count" readonly style="border:none; background-color: #F2E8C4;" align="center">
+			<p>좌석 번호 </p>
+			<div id="set">
+			
+			</div>
+		
+		</div>
+		
+		<div style="float:left;">
+			<table>
+			<tr>
+				<td>
+				<input name="m_name" value="${sessionScope.vo.m_name}" readonly style="border:none; background-color: #F2E8C4;">
+				</td>
+			</tr>
+			<tr>
+				<td>
+			 	<input name="city" value="${sessionScope.vo.city}" readonly style="width:25px;border:none ;background-color: #F2E8C4;">
+				<input name="district" value="${sessionScope.vo.district}" readonly style="width:30px;border:none; background-color: #F2E8C4;">
+				</td>
+			</tr>
+			<tr>	
+				<input name="time" value="${sessionScope.vo.time}" readonly style="border:none ;background-color: #F2E8C4;">
+			</tr>
+			<tr>
+				<td>
+				<input name="total_m" id="total_m" readonly style="border:none; background-color: #F2E8C4;">
+				</td>
+			</tr>
+			</table>
+				
+				<div>
+				<input type="button" value="결재하기" onclick="send(this.form);">
+				</div>
+				<input type="hidden" name="date_s" value="${sessionScope.vo.date_s}" readonly style="border:none ; background-color: #F2E8C4;">
+		</div>
+	</form>
 </div>
-
-
-<hr>
-   
-
+  
+<div>
 <div style="width:600px;height:400px ;margin:0 auto ;border:1px solid ;overflow: hidden; background-color:#424242 " align="center"  >
 <div style="margin-bottom: 15px">
 <h1 align="center" style="color:#A4A4A4">::SCREEN::</h1>
@@ -122,24 +160,9 @@ window.onload=function(){
       </div>
    </c:forEach>
 </div>
-<hr>
-<form action="paymoney.do" method="get">
-<div id="set">
-<h3>::선택한 좌석번호::</h3>
 
 </div>
-<h3>::예매 정보::</h3>
-<input name="m_name" value="${sessionScope.vo.m_name}" readonly>
-<input name="city" value="${sessionScope.vo.city}" readonly>
-<input name="district" value="${sessionScope.vo.district}" readonly>
-<input name="date_s" value="${sessionScope.vo.date_s}" readonly>
-<input name="time" value="${sessionScope.vo.time}" readonly>
-<input name="total_m" id="total_m" readonly>
-<input name="seat_count" id="seat_count" readonly>
-<div>
-<input type="button" value="결재하기" onclick="send(this.form);">
-</div>
-</form>
+
 
 </body>
 </html>

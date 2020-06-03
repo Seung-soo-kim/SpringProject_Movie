@@ -132,6 +132,9 @@
       	p.id=id+"s";
       	p.value=id;
       	p.name="seat";
+      	p.style.border="none";
+      	p.style.width="35px";
+      	p.style.backgroundColor="#F2E8C4";
 		p.readOnly="false";
       var input = document.getElementById(id);
       //console.log(input.value);
@@ -142,14 +145,12 @@
     	document.getElementById("seat_count").value=count;
     	div.removeChild(inp);
       }else if(count<total){
-    	  
     	count+=1;
       	input.style.background="red";
       	console.log(count);
       	document.getElementById("seat_count").value=count;
       	div.appendChild(p);
-  
-      	
+ 
       }
 		
    }
