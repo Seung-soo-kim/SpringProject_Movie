@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>순위</title>
+<title>예매</title>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/select.js"></script>
 <style type="text/css">

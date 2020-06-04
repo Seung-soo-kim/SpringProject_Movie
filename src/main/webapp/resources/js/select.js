@@ -136,6 +136,7 @@
 		if( xhr.readyState == 4 && xhr.status == 200 ){
 			var data = xhr.responseText;
 			var json = eval(data);
+			alert(data);
 			if(data=="[]"){
 				alert("해당영화의 상영관이 없습니다.");
 			}
