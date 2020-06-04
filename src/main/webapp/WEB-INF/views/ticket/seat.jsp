@@ -35,8 +35,9 @@ body{
 <script type="text/javascript">
 window.onload=function(){
 	already_seat();
-	var time="";
-	alert(time);
+	var time="${ sessionScope.vo.time}";
+	var time_s=time.substring(0,16);
+	document.getElementById("time_s").value=time_s;
 }	
 	//예약된 좌석 클릭못하게 막기
 	function already_seat() {
@@ -70,7 +71,7 @@ window.onload=function(){
 </div>
 <div  style="width:600px  ;margin:0 auto ;overflow: hidden; " align="center">
 	<div style="float:left;width:150px">
-	   <table>
+	   <table style="float:left;">
 			<tr>
 				<td>어른</td>
 				<td>:</td>
@@ -100,25 +101,24 @@ window.onload=function(){
 				<td id="to" colspan="3" align="right">0</td>
 				<td>명</td>
 			</tr>
-	      	<tr>
-	      		<td>합계</td>
-	      		<td id="m_t" colspan="3" align="right">0</td>
-	      		<td>원</td>
-	      	</tr>
+	      	
+	      	
+	      	
 	   </table>
+	      		<input id="m_t" type="hidden">
    </div>
 
 	
 	
 	<form action="paymoney.do" method="get" style="border-left:1px solid grey;height:119px ; overflow:hidden;">
-		<div style="float:left; width:250px; border-right: 1px solid grey ;height:119px ;">
+		<div style=" overflow:hidden;float:left; width:250px; border-right: 1px solid grey ;height:119px ;">
 			<p style="font-weight: bold;font-size: 15px">선택된 좌석수 </p>
 			<div align="center" style="border-bottom: 1px solid grey">
 				<input name="seat_count" value=0 id="seat_count" readonly style="width:20px; border:none; background-color: #F2E8C4;" align="center">
 			</div>
 			
 			<p style="font-weight: bold;font-size: 15px">좌석 번호 </p>
-			<div id="set">
+			<div id="set" style="margin-top: 15px" >
 			
 			</div>
 		</div>
@@ -133,8 +133,9 @@ window.onload=function(){
 			 	<input name="city" value="${sessionScope.vo.city}" readonly style="width:25px;border:none ;background-color: #F2E8C4;">
 				<input name="district" value="${sessionScope.vo.district}" readonly style="width:30px;border:none; background-color: #F2E8C4;">
 				</div>
-				<div align="left">
-					${ sessionScope.vo.time}
+				
+				<div align="left"  >
+					<input id="time_s" readonly style="border:none ;background-color: #F2E8C4;">
 				</div>	
 			
 				<div align="left">
@@ -165,15 +166,15 @@ window.onload=function(){
          <c:forEach var="j" begin="1" end="8" step="1">
          		<c:if test="${j eq 2 }">
                <input name="${i}${j}" type="button" id="${i}${j}"
-               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="border:none;border-bottom:1px solid ;margin-right:15px ;margin-left:0px">
+               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="border:none;border-bottom:1px solid ;margin-right:15px ">
         		</c:if>
          		<c:if test="${j eq 7 }">
                <input name="${i}${j}" type="button" id="${i}${j}"
-               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="border:none;margin-left:15px">
+               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="border:none;border-bottom:1px solid ;margin-left:15px">
          		</c:if>
          		<c:if test="${j ne 7 and j ne 2 }">
          		<input name="${i}${j}" type="button" id="${i}${j}"
-               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="border:none;margin-left:0px">
+               value="${i}${j}" class="seat" onclick="seat('${i}${j}');" style="border:none;border-bottom:1px solid ;margin-left:0px">
          		</c:if>
          </c:forEach>
       </div>

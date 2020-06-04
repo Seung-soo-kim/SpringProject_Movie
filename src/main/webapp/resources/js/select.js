@@ -2,7 +2,7 @@
 	// 조회할 날짜를 계산
 	var dt = new Date();
 	//하루전 날짜 
-	dt.setTime(new Date().getTime() - (3 * 24 * 60 * 60 * 1000));
+	dt.setTime(new Date().getTime() - (4 * 24 * 60 * 60 * 1000));
 	
     var m = dt.getMonth() + 1;
 	if (m < 10) {

@@ -79,8 +79,8 @@ window.onload=function(){
 <table>
 </table>
 </div>
-<div style="width:1200px ;margin:0 auto ;border:1px solid ;overflow: hidden;" align="center">
-<!--border지워도댐  -->
+<div style="width:1200px ;margin:0 auto ;overflow: hidden;" align="center">
+
 
 
 <!--영화 출력  -->
