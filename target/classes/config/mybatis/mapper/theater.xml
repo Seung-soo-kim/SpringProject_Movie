@@ -30,6 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="seatchange" parameterType="java.util.Map">
 		update theater set seat_total=seat_total - #{count} where m_name=#{m_name} and city=#{city} and district=#{district} and date_s=TO_DATE(#{date_s}, 'MMDDYYYY') and time=TO_DATE(#{time}, 'yyyy-mm-dd hh24:mi:ss')
 	</update>
+	
 </mapper>
 
 

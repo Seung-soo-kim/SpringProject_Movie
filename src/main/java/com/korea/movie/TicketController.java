@@ -36,7 +36,7 @@ public class TicketController {
 	}
 	
 	//합칠때 지워도댐 
-	@RequestMapping(value= {"/ticketing.do","/"})
+	@RequestMapping(value= {"/ticketing.do"})
 	public String test() {
 		return "WEB-INF/views/ticket/test.jsp";
 	}

@@ -24,6 +24,11 @@
 		<beans:property name="board_dao" ref="board_daoBean"/>
 	</beans:bean> -->
 	
+	
+	<!-- HomeController -->
+	<beans:bean class="com.korea.movie.HomeController"/>
+	
+	
 	<!-- TicketController -->
 	<beans:bean class="com.korea.movie.TicketController">
 			<beans:constructor-arg ref="theaterdao_Bean"/>

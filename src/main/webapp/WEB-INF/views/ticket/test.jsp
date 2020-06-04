@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>예매</title>
+<link rel="shortcut icon" type="image/x-icon" href="${ pageContext.request.contextPath }/resources/img/icon.jpg"/>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/select.js"></script>
 <style type="text/css">
@@ -43,7 +44,7 @@
     
 }
 body{
-	background-color: #F2E8C4;
+	/* background-color: #2E2E2E; */
 }
 
 /* //div스크롤바 꾸미기  */
@@ -61,6 +62,8 @@ div::-webkit-scrollbar {
     border-radius: 8px;
     box-shadow: inset 0px 0px 5px white;
   }
+#dd{ width:100%; height:400px; z-index:-1000; position:absolute; }
+#dd > img{ width:100%; height:300px; background-repeat: no-repeat; }
 </style>
 <script type="text/javascript">
 
@@ -68,24 +71,24 @@ window.onload=function(){
     load_list();
  };
 </script>
-
-<style type="text/css">
-
-</style>
 </head>
 <body>
-<%-- <jsp:include page="home.jsp"/> --%>
-<div>
-<table>
-</table>
-</div>
-<div style="width:1200px ;margin:0 auto ;overflow: hidden;" align="center">
+
+ <jsp:include page="header.jsp"/>
 
 
+
+<div  style="width:100% ;height:400px ;margin:300px auto ;overflow: hidden;position: absolute;" align="center">
 
 <!--영화 출력  -->
+	<div id="dd">
+		<img src="${ pageContext.request.contextPath }/resources/img/m_list_bg.png">
+	</div>
+
+	<div style="width:1200px; margin:0 auto; ">
+	
 		<div style="float:left;margin: 4px;">
-			<div style="background-color:gray ; margin:0"><h3 style="color:#F0F6E8">영화</h3></div>
+			<div style="background-color:gray ;"><h3 style="color:#F0F6E8">영화</h3></div>
 			<div class="movie_select" id="movie_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;background-color:#F4F1E5">
 			
 			</div>
@@ -150,7 +153,8 @@ window.onload=function(){
 	
 </form>
 </div>
-
+</div>
+</div>
 </div>
 </body>
 </html>
