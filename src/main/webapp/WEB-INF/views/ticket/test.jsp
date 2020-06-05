@@ -83,13 +83,13 @@ div::-webkit-scrollbar {
 </style>
 <script type="text/javascript">
 window.onload=function(){
-var param=${param.m_name};
-   	
-	load_list(param);
-   
-	  
-   
+	load_list();
+
  };
+ function select() {
+	
+	document.getElementById(${param.m_name}).click();
+ }
 </script>
 </head>
 <body>

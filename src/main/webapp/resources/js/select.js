@@ -1,8 +1,7 @@
-﻿var mv='';
-function load_list(mo){
+﻿
+function load_list(){
 	// 조회할 날짜를 계산
-	var mv=mo;
-	
+
 	var dt = new Date();
 	//하루전 날짜 
 	dt.setTime(new Date().getTime() - (5 * 24 * 60 * 60 * 1000));
@@ -38,9 +37,7 @@ function load_list(mo){
  }
  
  function resultFn(){
-   
     if( xhr.readyState == 4 && xhr.status == 200 ){
-    	alert(mv);
        var data = xhr.responseText;
        var json=eval("[" + data + "]");
      	
@@ -62,11 +59,14 @@ function load_list(mo){
 		  div.appendChild(input);
 		  movie_select.appendChild(div);
       }
-       
+       select();
        
     }  
     
  }
+ 
+ //--------------------------------------------------------
+ 
  //--------------------------------------------------------
 
 //영화 클릭시 실행되는 메서드
