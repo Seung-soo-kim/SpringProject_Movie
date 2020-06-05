@@ -17,4 +17,12 @@
 		<property ref="sqlSessionBean" name="sqlSession"/>
 	</bean>
 	
+	<bean id="board_daoBean" class="dao.BoardDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/> 
+	</bean>
+	
+	<bean id="movie_daoBean" class="dao.MovieListDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	
 </beans>

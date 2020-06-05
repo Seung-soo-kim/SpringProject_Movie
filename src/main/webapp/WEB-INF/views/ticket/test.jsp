@@ -12,7 +12,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/select.js"></script>
 <style type="text/css">
 *{margin: 0; padding: 0;}
-	.st{width:90px;
+.st{width:90px;
 
     background-color: #F4F1E5;
 
@@ -88,13 +88,15 @@ window.onload=function(){
  };
  function select() {
 	
-	
+	 
 	if( ${empty param.m_name} ){
 		
 		return;
 	}else{
-	document.getElementById(${param.m_name}).click();
-	}
+	document.getElementById('${param.m_name}').click();
+	document.getElementById('${param.m_name}').focus();
+	} 
+	return;
  }
 </script>
 </head>

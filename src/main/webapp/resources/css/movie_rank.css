@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+#contents_rank_title{
+	position:absolute;
+	top:5px;
+	left:20px;
+	font-size: 15px;
+	font-weight: bold;
+	color:white;
+}
+#contents_rank_title span{
+	color:red;
+}
+
+#loadingText{
+	position:absolute;
+	top:400px;
+	left:500px;
+	text-align: center;
+	color:white;
+}
+
+#contents_rank{
+	position: relative;
+}
+
+#select_movie_list{
+	overflow: hidden;
+}
+
+#movie_rank_box_one{
+	border:1px solid red;
+	width:230px;
+	height:450px;
+	float:left;
+	margin:20px;
+}

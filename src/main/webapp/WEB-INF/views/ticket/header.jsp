@@ -55,7 +55,7 @@
 				<h1 id="nav_left"><img src="${ pageContext.request.contextPath }/resources/img/logo_test.png"></h1>
 				<h2><img src="${ pageContext.request.contextPath }/resources/img/nav_logo.png"></h2>
 				<ul>
-					<li><a href="#">영화</a></li>
+					<li><a href="movieReleaseList.do">영화</a></li>
 					<li><a href="ticketing.do">예매</a></li>
 					<li><a href="#">영화관</a></li>
 					<li><a href="review.do">커뮤니티</a></li>				

@@ -25,6 +25,16 @@
 	</beans:bean> -->
 	
 	
+	<!--  MovieListController-->
+	<beans:bean class="com.korea.movie.MovieListController"> 
+		<beans:property name="movieListDAO" ref="movie_daoBean"/>   
+	</beans:bean>
+	
+	<!-- BoardController 수동생성 -->
+ 	<beans:bean class="com.korea.movie.BoardController">
+		<beans:property name="board_dao" ref="board_daoBean"/>
+	</beans:bean>
+	
 	<!-- HomeController -->
 	<beans:bean class="com.korea.movie.HomeController"/>
 	

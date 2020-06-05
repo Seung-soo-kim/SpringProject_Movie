@@ -1,0 +1,242 @@
+@charset "UTF-8";
+*{
+	margin:0;
+	padding:0;
+}
+li{ list-style:none; }
+a{ text-decoration:none; }
+
+body{
+	/* background: #FDFCF0; */
+	background: linear-gradient(-135deg, gray, #313131) fixed;
+
+}
+.movielist_bg{ width:100%; height:300px; z-index:-5; position:absolute; }
+.movielist_bg > img{ width:100%; height:300px; background-repeat: no-repeat; }
+
+/* 공툥요소 */
+/* header */
+.main_bg{ width:100%; height:300px; z-index:-1000; position:absolute; }
+.main_bg > img{ width:100%; height:300px; background-repeat: no-repeat; }
+
+#header{ width:100%; height:300px; position:absolute; }
+
+#header .gnb{ width:80%; height:40px; position:relative; margin:0 auto; }
+#header .gnb ul{ width:200px; float:right; list-style:none; }
+#header .gnb ul li{ float:right; margin-right:10px; }
+#header .gnb ul > li > a{ text-decoration:none; color:white; letter-spacing:2px; font-size:13px; }
+
+#header .nav{ width:80%; height:240px; position:relative; margin:10px auto; }
+#header .nav #nav_left{ width:180px; height:180px; position:absolute; margin:30px 4%; }
+#header .nav #nav_left > img{ width:180px; height:180px; }
+#header .nav #nav_right{ width:180px; height:180px; position:absolute; margin-left:82%; margin-top:40px; }
+#header .nav #nav_right > img{ width:220px; height:160px; }
+#header .nav > h2{ width:50%; height:70px; position:absolute; margin:30px 25%; }
+#header .nav > h2 > img{ width:100%; height:70px; }
+
+#header .nav ul{ width:60%; height:60px; list-style:none; position:absolute; margin-top:120px; margin-left:20%; }
+#header .nav ul > li{ float:left; width:25%; height:50px; text-align:center; line-height:80px; }
+#header .nav ul > li > a{ text-decoration:none; color:white; font-size:18px; font-weight:400px; letter-spacing:2px; text-shadow: 5px 5px 5px white, 0 0 120px purple, 0 0 5px maroon; }
+#header .nav ul > li > a:visited { text-decoration: none; }
+
+/* 포스트 호버 작업 */
+.poster_hover_text_2{
+	position: absolute;
+	top:110px;
+	left:35px;
+	width:160px;
+	height:24px;
+	border:1px solid white;
+	color:white;
+	font-size: 14px;
+	border-radius: 10px;
+	padding-top:4px;
+}
+
+.poster_hover_text_2 a{
+	color:white;
+}
+.poster_hover_text_1{
+	position: absolute;
+	top:160px;
+	left:35px;
+	width:160px;
+	height:24px;
+	border:1px solid white;
+	color:white;
+	font-size: 14px;
+	border-radius: 10px;
+	padding-top:4px;
+}
+.poster_hover_text_1 a{
+	color:white;
+}
+
+.poster_hover_text_3{
+	position: absolute;
+	top:140px;
+	left:35px;
+	width:160px;
+	height:24px;
+	border:1px solid white;
+	color:white;
+	font-size: 14px;
+	border-radius: 10px;
+	padding-top:4px;
+}
+.poster_hover_text_3 a{
+	color:white;
+}
+.poster_box{
+ 	position: relative;
+}
+
+.poster_box > img {
+	margin: 0px auto;
+	text-align: center; 
+}
+.poster_hover_text{
+	position: relative;
+	text-align:center;
+}
+.poster_box .poster_hover{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	display:none;
+	color:#fff;
+}
+.poster_box:hover .poster_hover{
+	display:block;
+	background: rgba(0, 0, 0, 0.6);
+}
+/* ----------------------------------- */
+
+/* 영화 상영예정작 css */
+#container{
+	width:1100px;
+	margin: 0px auto; 
+	padding-bottom:100px;
+	position : relative;
+}
+#container_inner{
+	position:absolute;
+	left:auto;
+	top:298px;
+	margin-top:0px;
+	background: linear-gradient(to right,#0f0f0f 20%,rgba(15,15,15,0.9) 50%,#0f0f0f 80%);
+}
+
+
+#contents_rank{
+	display: none;
+}
+
+#contents_query{
+	display: none;
+}
+
+#page_title{
+	padding: 20px;
+	font-size: 25px;
+	margin-bottom:20px;
+	color:white;
+}
+
+.movie_title_box > div{
+	color:white;
+}
+
+.movie_infos > div{
+	color:white;
+}
+
+#movie_list_nav{
+	text-align:center;
+	border:1px solid white;
+	height:40px;
+} 
+
+#movie_list_nav a {
+	color:white;
+} 
+ 
+#movie_list_nav .movie_list_nav1{
+	color:white;
+	width:260px;
+	height:38px;
+	float:left;
+	border:1px solid white;
+}
+#movie_list_nav .movie_list_nav2{
+	color:white;
+	width:260px;
+	height:38px;
+	float:left;
+	border:1px solid white;
+}
+
+#movie_list_nav .movie_list_nav3{
+	color:white;
+	float:right;
+	width:200px;
+	height:38px;
+}
+
+
+#select_movie_lists_release{
+	overflow: hidden;
+}
+#select_movie_lists_release>div{
+	border:1px solid red;
+	width:230px;
+	height:450px;
+	float:left;
+	margin:20px;
+}
+#select_movie_lists_release_2{
+	display:none;
+	overflow: hidden;
+}
+#select_movie_lists_release_2>div{
+	border:1px solid red;
+	width:230px;
+	height:450px;
+	float:left;
+	margin:20px;
+}
+#select_movie_lists_release_3{
+	display:none;
+	overflow: hidden;
+}
+#select_movie_lists_release_3>div{
+	border:1px solid red;
+	width:230px;
+	height:450px;
+	float:left;
+	margin:20px;
+}
+
+#select_movie_lists_release_4{
+	display:none;
+	overflow: hidden;
+}
+#select_movie_lists_release_4>div{
+	border:1px solid red;
+	width:230px;
+	height:450px;
+	float:left;
+	margin:20px;
+}
+
+#movie_release_list_moreSee{
+	margin: 0px auto;
+}
+
+#nav{ width:100%; height:200px; position:fixed; z-index:5; }/*  */
+#nav > ul{ width:60%; height:50px; position:relative; margin:120px auto; list-style:none; background:rgb(119, 119, 119, 0.4); border-radius:20px; }
+#nav > ul > li{ width:20%; height:50px; text-align:center; float:left; line-height:50px; }
+#nav > ul > li > a{ text-decoration:none; font-size:18px; font-weight:400px; letter-spacing:2px; color:white; text-shadow:5px 5px 5px gray, 0 0 120px white, 0 0 5px gray; }
+#nav > ul > li > a:visited{ text-decoration:none; }

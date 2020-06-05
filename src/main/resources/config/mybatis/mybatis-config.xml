@@ -11,6 +11,9 @@
 	<typeAliases>
 		<typeAlias type="vo.TheaterVO" alias="theater"/>
 		<typeAlias alias="user" type="vo.UserVO"/>
+		<typeAlias type="vo.MovieRankPosterVO" alias="moviePoster"/>
+		<typeAlias type="vo.BoardVO" alias="board"/>
+		<typeAlias type="vo.UserVO" alias="user"/>
 	</typeAliases>
 	
 	<mappers>
@@ -18,5 +21,7 @@
 		<mapper resource="config/mybatis/mapper/ticket.xml" />
 		<mapper resource="config/mybatis/mapper/seat.xml" />
 		<mapper resource="config/mybatis/mapper/user.xml"/>
+		<mapper resource="config/mybatis/mapper/movie.xml" />
+		<mapper resource="config/mybatis/mapper/board.xml" />
 	</mappers>
 </configuration>
