@@ -35,7 +35,7 @@
 /* footer */
 .f_bg{ width:100%; height:300px; z-index:-1000; position:absolute; }
 .f_bg > img{ width:100%; height:100%; background-repeat: no-repeat; }
-#footer{ width:100%; height:100%; position:absolute; margin-top:900px;}
+#footer{ width:100%; height:300px; position:absolute; margin-top:900px;}
 #footer .f_logo{ width:150px; height:150px; position:absolute; margin-top:-3px; }
 #footer .f_logo > img{ width:150px; height:150px; }
 
@@ -53,6 +53,7 @@ window.onload=function(){
 	var time="${ sessionScope.vo.time}";
 	var time_s=time.substring(0,16);
 	document.getElementById("time_s").value=time_s;
+	
 }	
 	//예약된 좌석 클릭못하게 막기
 	function already_seat() {
@@ -86,7 +87,7 @@ window.onload=function(){
 		<img src="${ pageContext.request.contextPath }/resources/img/m_list_bg.png">
 </div>
 <div>
-	<P style="width:100%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">인원/좌석</P>
+	<P style="width:80%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">인원/좌석</P>
 </div>
 <div  style="width:600px  ;margin:0 auto ;overflow: hidden; " align="center">
 	<div style="float:left;width:150px">
@@ -169,7 +170,7 @@ window.onload=function(){
 				<input type="button" value="결재하기" onclick="send(this.form);">
 				</div>
 				<input name="time" value="${sessionScope.vo.time}" type="hidden">
-				<input type="hidden" name="date_s" value="${sessionScope.vo.date_s}" readonly style="border:none ; background-color: #F2E8C4;">
+				<input type="hidden" name="date_s" value="${sessionScope.vo.date_s}" readonly ">
 		</div>
 	</form>
 	

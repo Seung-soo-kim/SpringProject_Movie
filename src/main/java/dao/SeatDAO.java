@@ -14,6 +14,7 @@ public class SeatDAO {
 	
 	//예약된 좌석 DB에 추가 
 	public int seatinsert(SeatVO vo) {
+		
 		int res =sqlSession.insert("s.seatsave" , vo);
 		return res;
 	}

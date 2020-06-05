@@ -72,7 +72,7 @@ div::-webkit-scrollbar {
 /* footer */
 .f_bg{ width:100%; height:300px; z-index:-1000; position:absolute; }
 .f_bg > img{ width:100%; height:100%; background-repeat: no-repeat; }
-#footer{ width:100%; height:100%; position:absolute; margin-top:700px;}
+#footer{ width:100%; height:300px; position:absolute; margin-top:900px;}
 #footer .f_logo{ width:150px; height:150px; position:absolute; margin-top:-3px; }
 #footer .f_logo > img{ width:150px; height:150px; }
 
@@ -88,7 +88,13 @@ window.onload=function(){
  };
  function select() {
 	
+	
+	if( ${empty param.m_name} ){
+		
+		return;
+	}else{
 	document.getElementById(${param.m_name}).click();
+	}
  }
 </script>
 </head>
@@ -104,7 +110,7 @@ window.onload=function(){
 	<div id="dd">
 		<img src="${ pageContext.request.contextPath }/resources/img/m_list_bg.png">
 	</div>
-	<P style="width:100%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">영화 상영관 선택</P>
+	<P style="width:80%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">영화 상영관 선택</P>
 	<div style="width:1200px; margin:50px auto; ">
 	
 		<div style="float:left;margin: 4px;">
@@ -149,26 +155,28 @@ window.onload=function(){
 
 <!-- 예매 정보 한번에 보기 -->
 <div style="margin: 4px;float:left;border-radius: 8px;">
-<div ><p style="width:100%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">예매 정보</p></div>
+<div style=" margin-bottom:10px"><p style="width:100%;height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">예매 정보</p></div>
 <form  action="ticketform.do" method="get">
 
-	<table style="background-color:#F4F1E5" >
+	<table style="background-color:transparent" >
 	<tr>
-		<td><input name="m_name" id="m_name" readonly style="border:none"></td>
+		<td><input name="m_name" id="m_name" readonly style="border:none;background-color:transparent;color:white;font-size: 15px"></td>
 	</tr>
 	<tr>
-		<td><input name="city" id="city" readonly style="border:none"></td>
+		<td><input name="city" id="city" readonly style="border:none;background-color:transparent;color:white;font-size: 15px"></td>
 	</tr>
 	<tr>
-		<td><input name="district" id="district" readonly style="border:none"></td>
+		<td><input name="district" id="district" readonly style="border:none;background-color:transparent;color:white;font-size: 15px"></td>
 	</tr>
 	<tr>
-		<td><input name="time" id="time" readonly style="border:none"></td>
+		<td><input name="time" id="time" readonly style="border:none;background-color:transparent;color:white;font-size:15px"></td>
 	</tr>
 	
 	</table>
-	<input type="button" value="좌석 선택하기" onclick="send(this.form);" style="background:rgb(3, 123, 148, 0.8); text-align:center; border-radius:20px; width:65%; height:12%; color:white;"> 
 	<input type="hidden" name="date_s" id="date" readonly style="border:none">
+	<div>
+	<input type="button" value="좌석 선택하기" onclick="send(this.form);" style="float:left ;width:65%; height:12%; display:block;  margin-top:12px; background:rgb(3, 123, 148, 0.8); text-align:center; border-radius:20px;"> 
+	</div>
 	
 	
 </form>

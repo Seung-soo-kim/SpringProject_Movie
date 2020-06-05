@@ -47,7 +47,7 @@
 			<div class="main_bg"><img src="${ pageContext.request.contextPath }/resources/img/main_bg.png"></div>
 			<div class="gnb">
 				<ul>
-					<li><a href="ticketing.do">로그인</a></li>
+					<li><a href="#">로그인</a></li>
 					<li><a href="#">회원가입</a></li>
 				</ul>
 			</div>
@@ -56,7 +56,7 @@
 				<h2><img src="${ pageContext.request.contextPath }/resources/img/nav_logo.png"></h2>
 				<ul>
 					<li><a href="#">영화</a></li>
-					<li><a href="#">예매</a></li>
+					<li><a href="ticketing.do">예매</a></li>
 					<li><a href="#">영화관</a></li>
 					<li><a href="review.do">커뮤니티</a></li>				
 				</ul>
