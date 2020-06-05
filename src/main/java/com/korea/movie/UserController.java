@@ -43,10 +43,13 @@ public class UserController {
 	}
 	
 	@RequestMapping("/login_form.do")
-	public String login_form() {
+	public String login_form(int seat) {
+		if(seat==1) {
+			return "WEB-INF/views/ticket/login_form1.jsp";
+		}else {
 		return Common.User.VIEW_PATH + "login_form.jsp";
 	}
-	
+	}
 	@RequestMapping("/login.do")
 	@ResponseBody
 	public String login(String id, String pwd) {

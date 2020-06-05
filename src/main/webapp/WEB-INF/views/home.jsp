@@ -16,7 +16,7 @@
 			<div class="main_bg"><img src="${ pageContext.request.contextPath }/resources/img/main_bg.png"></div>
 			<div class="gnb">
 				<ul>
-					<li><a href="#">로그인</a></li>
+					<li><a href="login_form.do?seat=0">로그인</a></li>
 					<li><a href="#">회원가입</a></li>
 				</ul>
 			</div>

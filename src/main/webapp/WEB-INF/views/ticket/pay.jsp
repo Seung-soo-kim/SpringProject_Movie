@@ -32,7 +32,7 @@
 	function resultFn() {
 		if(xhr.readyState==4 && xhr.status==200){
 			alert("결재 성공");
-			location.href="saveseat.do";
+			location.href="mypage.do";
 		}
 	} 
 	

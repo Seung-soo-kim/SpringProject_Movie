@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
-<%@include file="../user/check_login.jsp" %>
+<%@include file="check_login1.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,14 +27,16 @@
 	background-color:gray;
 	color:white;
 }
-
+       body{
+           background-image: url(${ pageContext.request.contextPath }/resources/img/footer_bg.png);
+           background-repeat: repeat;
+           
+       }
   
-#dd{ width:100%; height:600px; z-index:-1000; position:absolute; }
-#dd > img{ width:100%; height:100%; background-repeat: no-repeat; }
+
 
 /* footer */
-.f_bg{ width:100%; height:300px; z-index:-1000; position:absolute; }
-.f_bg > img{ width:100%; height:100%; background-repeat: no-repeat; }
+
 #footer{ width:100%; height:300px; position:absolute; margin-top:900px;}
 #footer .f_logo{ width:150px; height:150px; position:absolute; margin-top:-3px; }
 #footer .f_logo > img{ width:150px; height:150px; }
@@ -83,9 +85,7 @@ window.onload=function(){
 <body>
  <jsp:include page="header.jsp"/>
  <div style="width:100% ;height:600px  ;margin:300px auto ;overflow: hidden;position: absolute;" align="center">
-<div id="dd">
-		<img src="${ pageContext.request.contextPath }/resources/img/m_list_bg.png">
-</div>
+
 <div>
 	<P style="width:80%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">인원/좌석</P>
 </div>
@@ -205,7 +205,7 @@ window.onload=function(){
 </div>
 <!-- footer -->
 		<div id="footer">
-			<div class="f_bg"><img src="${ pageContext.request.contextPath }/resources/img/footer_bg.png"></div>
+			
 			<div class="f_txt">
 				<p class="f_logo"><img src="${ pageContext.request.contextPath }/resources/img/logo_test.png"></p>
 				<address>서울특별시 마포구 서강로 136 아이비티워 2층,3층</address>

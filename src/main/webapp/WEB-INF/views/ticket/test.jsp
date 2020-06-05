@@ -139,7 +139,7 @@ window.onload=function(){
 	
 
 
-<!--날자 출력  -->
+<!--날짜 출력  -->
 		
 		<div style="margin: 4px;float:left;">
 			<div ><p style="width:100%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">날짜 및 시간</p></div>

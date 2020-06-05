@@ -44,7 +44,7 @@
 					alert("패스워드가 일치하지 않습니다.");
 					return;
 				}else if(data == 'clear'){
-					return location.href='mypage.do';
+					return location.href='ticketform2.do';
 				}
 				
 			}

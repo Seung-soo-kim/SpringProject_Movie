@@ -44,12 +44,9 @@
 	
 		<!-- header -->
 		<div id="header">
-			<%-- <div class="main_bg"><img src="${ pageContext.request.contextPath }/resources/img/main_bg.png"></div> --%>
+			<div class="main_bg"><img src="${ pageContext.request.contextPath }/resources/img/main_bg.png"></div>
 			<div class="gnb">
-				<ul>
-					<li><a href="#">로그인</a></li>
-					<li><a href="#">회원가입</a></li>
-				</ul>
+				
 			</div>
 			<div class="nav">
 				<h1 id="nav_left"><img src="${ pageContext.request.contextPath }/resources/img/logo_test.png"></h1>
