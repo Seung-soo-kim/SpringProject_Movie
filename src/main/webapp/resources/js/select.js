@@ -1,8 +1,11 @@
-﻿function load_list(){
+﻿var mv='';
+function load_list(mo){
 	// 조회할 날짜를 계산
+	var mv=mo;
+	
 	var dt = new Date();
 	//하루전 날짜 
-	dt.setTime(new Date().getTime() - (4 * 24 * 60 * 60 * 1000));
+	dt.setTime(new Date().getTime() - (5 * 24 * 60 * 60 * 1000));
 	
     var m = dt.getMonth() + 1;
 	if (m < 10) {
@@ -35,9 +38,9 @@
  }
  
  function resultFn(){
-    
+   
     if( xhr.readyState == 4 && xhr.status == 200 ){
-       
+    	alert(mv);
        var data = xhr.responseText;
        var json=eval("[" + data + "]");
      	
@@ -45,6 +48,7 @@
        var movie_select =document.getElementById("movie_select")
        
       for(var i=0 ; i<json[0].boxOfficeResult.weeklyBoxOfficeList.length ; i++){
+    	 
     	  var div = document.createElement("div");
     	  var input = document.createElement("input");
     	  input.type="button";
@@ -52,12 +56,11 @@
     	  input.style.width="170px";
     	  input.id=json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;
     	  input.value=json[0].boxOfficeResult.weeklyBoxOfficeList[i].movieNm;//영화 이름
-    	 input.onclick=function(e){
-    		 movie(e.target.value, e.target);
-    	 }
+    	  input.onclick=function(e){
+    		  movie(e.target.value, e.target);
+    	  }
 		  div.appendChild(input);
 		  movie_select.appendChild(div);
-    	  
       }
        
        

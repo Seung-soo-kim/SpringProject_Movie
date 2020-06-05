@@ -170,7 +170,8 @@
       	p.name="seat";
       	p.style.border="none";
       	p.style.width="35px";
-      	p.style.backgroundColor="#F2E8C4";
+      	p.style.color="white";
+      	p.style.backgroundColor="transparent";
 		p.readOnly="false";
       var input = document.getElementById(id);
       //console.log(input.value);

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>예매</title>
-<link rel="shortcut icon" type="image/x-icon" href="${ pageContext.request.contextPath }/resources/img/icon.jpg"/>
+
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/select.js"></script>
 <style type="text/css">
@@ -43,9 +43,7 @@
     color:#F4F1E5;
     
 }
-body{
-	/* background-color: #2E2E2E; */
-}
+
 
 /* //div스크롤바 꾸미기  */
 div::-webkit-scrollbar {
@@ -62,34 +60,56 @@ div::-webkit-scrollbar {
     border-radius: 8px;
     box-shadow: inset 0px 0px 5px white;
   }
-#dd{ width:100%; height:400px; z-index:-1000; position:absolute; }
-#dd > img{ width:100%; height:300px; background-repeat: no-repeat; }
+  
+  
+
+  
+  
+#dd{ width:100%; height:600px; z-index:-1000; position:absolute; }
+#dd > img{ width:100%; height:100%; background-repeat: no-repeat; }
+
+
+/* footer */
+.f_bg{ width:100%; height:300px; z-index:-1000; position:absolute; }
+.f_bg > img{ width:100%; height:100%; background-repeat: no-repeat; }
+#footer{ width:100%; height:100%; position:absolute; margin-top:700px;}
+#footer .f_logo{ width:150px; height:150px; position:absolute; margin-top:-3px; }
+#footer .f_logo > img{ width:150px; height:150px; }
+
+#footer .f_txt{ width:50%; height:150px; position:relative; margin:25px auto; }
+#footer address{ width:100%; height:30px; position:absolute; margin:30px auto; text-align:center; color:white; }
+#footer .team1{ width:100%; height:30px; position:absolute; margin:60px auto; text-align:center; color:white; }
+#footer .team2{ width:100%; height:30px; position:absolute; margin:90px auto; text-align:center; color:white; }
 </style>
 <script type="text/javascript">
-
 window.onload=function(){
-    load_list();
+var param=${param.m_name};
+   	
+	load_list(param);
+   
+	  
+   
  };
 </script>
 </head>
 <body>
 
  <jsp:include page="header.jsp"/>
+ 
 
 
-
-<div  style="width:100% ;height:400px ;margin:300px auto ;overflow: hidden;position: absolute;" align="center">
+<div  style="width:100% ;height:600px  ;margin:300px auto ;overflow: hidden;position: absolute;" align="center">
 
 <!--영화 출력  -->
 	<div id="dd">
 		<img src="${ pageContext.request.contextPath }/resources/img/m_list_bg.png">
 	</div>
-
-	<div style="width:1200px; margin:0 auto; ">
+	<P style="width:100%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">영화 상영관 선택</P>
+	<div style="width:1200px; margin:50px auto; ">
 	
 		<div style="float:left;margin: 4px;">
-			<div style="background-color:gray ;"><h3 style="color:#F0F6E8">영화</h3></div>
-			<div class="movie_select" id="movie_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;background-color:#F4F1E5">
+			<div><p style="width:100%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">영화</p></div>
+			<div class="movie_select" id="movie_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;background-color:#F4F1E5;border-radius: 8px;">
 			
 			</div>
 		</div>
@@ -97,13 +117,13 @@ window.onload=function(){
 
 		
 		<div style="margin: 4px;float:left;">
-			<div style="background-color:gray ; margin:0"><h3 style="color:#F0F6E8">극장</h3></div>
+			<div ><p style="width:100%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">극장</p></div>
 			<div>
 				
-			<div id="city_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;float:left;background-color:#F4F1E5">
+			<div id="city_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;float:left;background-color:#F4F1E5;border-radius: 8px;">
 			</div>
 			
-			<div id="district_select" style="overflow:scroll; overflow-x:hidden;width:190px; height:200px;float:left;background-color:#F4F1E5">
+			<div id="district_select" style="overflow:scroll; overflow-x:hidden;width:190px; height:200px;float:left;background-color:#F4F1E5 ; border-radius: 8px;">
 			
 			</div>
 			</div>
@@ -114,22 +134,22 @@ window.onload=function(){
 <!--날자 출력  -->
 		
 		<div style="margin: 4px;float:left;">
-			<div style="background-color:gray ; margin:0"><h3 style="color:#F0F6E8">날짜 및 시간</h3></div>
+			<div ><p style="width:100%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">날짜 및 시간</p></div>
 			<div>
-				<div id="date_select" style="overflow:scroll; overflow-x:hidden;width:190px; height:200px;float:left;background-color:#F4F1E5">
+				<div id="date_select" style="overflow:scroll; overflow-x:hidden;width:190px; height:200px;float:left;background-color:#F4F1E5; border-radius: 8px;">
 				
 				</div>
 
 <!--상영시간 출력  -->
-				<div id="time_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;float:left;background-color:#F4F1E5">
+				<div id="time_select" style="overflow:scroll;overflow-x:hidden; width:190px; height:200px;float:left;background-color:#F4F1E5 ;border-radius: 8px;">
 				
 				</div>
 			</div>
 		</div>
 
 <!-- 예매 정보 한번에 보기 -->
-<div style="margin: 4px;float:left;">
-<div style="background-color:gray ; margin:0"><h3 style="color:#F0F6E8">예매 정보</h3></div>
+<div style="margin: 4px;float:left;border-radius: 8px;">
+<div ><p style="width:100%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">예매 정보</p></div>
 <form  action="ticketform.do" method="get">
 
 	<table style="background-color:#F4F1E5" >
@@ -147,7 +167,7 @@ window.onload=function(){
 	</tr>
 	
 	</table>
-	<input type="button" value="좌석 선택하기" onclick="send(this.form);">
+	<input type="button" value="좌석 선택하기" onclick="send(this.form);" style="background:rgb(3, 123, 148, 0.8); text-align:center; border-radius:20px; width:65%; height:12%; color:white;"> 
 	<input type="hidden" name="date_s" id="date" readonly style="border:none">
 	
 	
@@ -155,6 +175,17 @@ window.onload=function(){
 </div>
 </div>
 </div>
-</div>
+<!-- footer -->
+		<div id="footer">
+			<div class="f_bg"><img src="${ pageContext.request.contextPath }/resources/img/footer_bg.png"></div>
+			<div class="f_txt">
+				<p class="f_logo"><img src="${ pageContext.request.contextPath }/resources/img/logo_test.png"></p>
+				<address>서울특별시 마포구 서강로 136 아이비티워 2층,3층</address>
+				<p class="team1">2조 Spring Project Movie</p>
+				<p class="team2">민형, 성수, 우성, 선영, 원경, 유진</p>
+			</div>
+		</div>
+		<!-- footer 끝 -->
+
 </body>
 </html>
