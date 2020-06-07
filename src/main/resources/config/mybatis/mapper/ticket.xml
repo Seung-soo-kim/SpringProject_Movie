@@ -12,8 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--회원 예약 정보 조회-->
 	<select id="selectticket" resultType="vo.TicketVO" parameterType="java.lang.String">
-		select * from ticket where id=#{id}
+		select * from ticket where id=#{id} 
 	</select>
+	
+	
 	
 </mapper>
 

@@ -43,7 +43,11 @@
     color:#F4F1E5;
     
 }
-
+body{
+           background-image: url(${ pageContext.request.contextPath }/resources/img/footer_bg.png);
+           background-repeat: repeat;
+           
+       }
 
 /* //div스크롤바 꾸미기  */
 div::-webkit-scrollbar {
@@ -60,18 +64,11 @@ div::-webkit-scrollbar {
     border-radius: 8px;
     box-shadow: inset 0px 0px 5px white;
   }
-  
-  
 
-  
-  
-#dd{ width:100%; height:600px; z-index:-1000; position:absolute; }
-#dd > img{ width:100%; height:100%; background-repeat: no-repeat; }
 
 
 /* footer */
-.f_bg{ width:100%; height:300px; z-index:-1000; position:absolute; }
-.f_bg > img{ width:100%; height:100%; background-repeat: no-repeat; }
+
 #footer{ width:100%; height:300px; position:absolute; margin-top:900px;}
 #footer .f_logo{ width:150px; height:150px; position:absolute; margin-top:-3px; }
 #footer .f_logo > img{ width:150px; height:150px; }
@@ -93,8 +90,8 @@ window.onload=function(){
 		
 		return;
 	}else{
-	document.getElementById('${param.m_name}').click();
-	document.getElementById('${param.m_name}').focus();
+	document.getElementById(${param.m_name}).click();
+	document.getElementById(${param.m_name}).focus();
 	} 
 	return;
  }
@@ -109,9 +106,7 @@ window.onload=function(){
 <div  style="width:100% ;height:600px  ;margin:300px auto ;overflow: hidden;position: absolute;" align="center">
 
 <!--영화 출력  -->
-	<div id="dd">
-		<img src="${ pageContext.request.contextPath }/resources/img/m_list_bg.png">
-	</div>
+	
 	<P style="width:80%; height:50px; background:rgb(119, 119, 119, 0.3); color:white; border-radius:20px; text-align:center; font-size:20px; font-weight:bold; line-height:50px;">영화 상영관 선택</P>
 	<div style="width:1200px; margin:50px auto; ">
 	
@@ -187,7 +182,7 @@ window.onload=function(){
 </div>
 <!-- footer -->
 		<div id="footer">
-			<div class="f_bg"><img src="${ pageContext.request.contextPath }/resources/img/footer_bg.png"></div>
+			
 			<div class="f_txt">
 				<p class="f_logo"><img src="${ pageContext.request.contextPath }/resources/img/logo_test.png"></p>
 				<address>서울특별시 마포구 서강로 136 아이비티워 2층,3층</address>

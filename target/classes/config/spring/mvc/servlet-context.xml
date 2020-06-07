@@ -49,6 +49,7 @@
 	<!-- UserController 수동생성 -->
 	<beans:bean class="com.korea.movie.UserController">
 		<beans:property ref="user_daoBean" name="user_dao"/>
+		<beans:property ref="ticketdao_Bean" name="ticket_dao"/>
 	</beans:bean>
 	
 </beans:beans>

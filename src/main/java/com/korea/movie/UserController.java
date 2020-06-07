@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.Common;
+import dao.TicketDAO;
 import dao.UserDAO;
+import vo.TicketVO;
 import vo.UserVO;
 
 
@@ -23,6 +25,12 @@ import vo.UserVO;
 public class UserController {
 
 	UserDAO user_dao;	// ==> @Repository에 있는 별칭과 똑같이 만들어줘야 한다.
+	//추가
+	TicketDAO ticket_dao;
+	public void setTicket_dao(TicketDAO ticket_dao) {
+		this.ticket_dao = ticket_dao;
+	}
+	
 	public void setUser_dao(UserDAO user_dao) {
 		this.user_dao = user_dao;
 	}
@@ -90,8 +98,16 @@ public class UserController {
 		return "redirect:login_form.do";
 		
 	}
-
-
+	
+	//--------------------------
+	//회원 예약 정보 조회 
+	@RequestMapping("/selectticket.do")
+	@ResponseBody
+	public List<TicketVO> selectTicket(String id){
+		List<TicketVO> list= null;
+		list = ticket_dao.selectTicket(id);
+		return list;
+	}
 
 
 }
